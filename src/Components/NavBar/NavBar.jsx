@@ -3,12 +3,14 @@ const NavBar = () => {
 
     const navOptions = <>
         <li><a>Home</a></li>
-        <li><a>About Me</a></li>
-        <li><a>My Services</a></li>
+        <li><a>About</a></li>
+        <li><a>Projects</a></li>
+        <li><a>Skills</a></li>
+        <li><a>Contact</a></li>
     </>
 
     return (
-        <div className="navbar bg-base-100">
+        <nav style={{ backgroundColor: "#031b28" }} className="text-white navbar">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -26,9 +28,9 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                <a className="btn rounded-full">Subscribe</a>
             </div>
-        </div>
+        </nav>
     );
 };
 
