@@ -4,6 +4,7 @@ import Banner from './Components/Banner/Banner'
 import ContactMe from './Components/ContactMe/ContactMe'
 import Footer from './Components/Footer/Footer'
 import NavBar from './Components/NavBar/NavBar'
+import Projects from './Components/Projects/Projects'
 import Skills from './Components/Skills/Skills'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <NavBar />
       <Banner />
       <Skills />
+      <Projects />
       <ContactMe />
       <Footer />
     </div>
