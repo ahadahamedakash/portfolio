@@ -28,7 +28,7 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn hover:text-#f9004d rounded-full">Subscribe</a>
+                <a className="font-bold text-2xl uppercase" style={{ color: "#f9004d"}} href="https://drive.google.com/file/d/1qy4Q1E7VcqJARzNHvixYIRhbmG82yIen/view?usp=sharing">Resume</a>
             </div>
         </nav>
     );
