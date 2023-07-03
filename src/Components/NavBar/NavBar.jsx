@@ -20,7 +20,7 @@ const NavBar = () => {
                         {navOptions}
                     </ul>
                 </div>
-                <a className="btn-ghost text-2xl uppercase p-2 rounded font-semibold">Ah<span className="text-2xl font-extrabold uppercase" style={{ color: "#f9004d" }}>ad</span></a>
+                <a className="btn-ghost text-3xl uppercase p-2 rounded font-semibold">Ah<span className="text-3xl font-extrabold uppercase" style={{ color: "#f9004d" }}>ad</span></a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
