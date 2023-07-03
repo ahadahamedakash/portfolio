@@ -4,6 +4,7 @@ import Banner from './Components/Banner/Banner'
 import ContactMe from './Components/ContactMe/ContactMe'
 import Footer from './Components/Footer/Footer'
 import NavBar from './Components/NavBar/NavBar'
+import Skills from './Components/Skills/Skills'
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     <div style={{ backgroundColor: "#000000" }} className='max-w-screen-xl mx-auto'>
       <NavBar />
       <Banner />
+      <Skills />
       <ContactMe />
       <Footer />
     </div>
