@@ -6,7 +6,7 @@ import NavBar from './Components/NavBar/NavBar'
 function App() {
 
   return (
-    <div className='max-w-screen-xl mx-auto'>
+    <div style={{ backgroundColor: "#000000" }} className='max-w-screen-xl mx-auto'>
       <NavBar />
       <Banner />
     </div>

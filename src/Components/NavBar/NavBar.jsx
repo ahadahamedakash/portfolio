@@ -10,7 +10,7 @@ const NavBar = () => {
     </>
 
     return (
-        <nav style={{ backgroundColor: "#031b28" }} className="text-white navbar">
+        <nav style={{ backgroundColor: "#000000" }} className="text-white navbar lg:px-10 md:px-3">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -20,7 +20,7 @@ const NavBar = () => {
                         {navOptions}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">Ahad Ahamed</a>
+                <a className="btn-ghost text-2xl uppercase p-2 rounded font-semibold">Ah<span className="text-2xl font-extrabold uppercase" style={{ color: "#f9004d" }}>ad</span></a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -28,7 +28,7 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn rounded-full">Subscribe</a>
+                <a className="btn hover:text-#f9004d rounded-full">Subscribe</a>
             </div>
         </nav>
     );

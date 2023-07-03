@@ -1,7 +1,7 @@
 
 const Banner = () => {
     return (
-        <section className="bg-gray-800 text-white py-5">
+        <section className="text-white py-5">
             <div className="container mx-auto flex flex-col md:flex-row items-center px-4">
                 <div className="w-full md:w-1/2 mb-8 md:mb-0">
                     <img src="https://img.freepik.com/free-vector/web-development-programmer-engineering-coding-website-augmented-reality-interface-screens-developer-project-engineer-programming-software-application-design-cartoon-illustration_107791-3863.jpg?w=2000" alt="DEVELOPER" className="mx-auto rounded-lg w-full p-10" />
