@@ -10,7 +10,7 @@ import Skills from './Components/Skills/Skills'
 function App() {
 
   return (
-    <div style={{ backgroundColor: "#000000" }} className='max-w-screen-xl mx-auto'>
+    <div className='max-w-screen-xl mx-auto'>
       <NavBar />
       <Banner />
       <Skills />
