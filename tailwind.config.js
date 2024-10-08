@@ -1,19 +1,17 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+module.exports = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
-      fontFamily: {
-        primary: ["Quicksand", "sans-serif"],
-        secondary: ["Lato", "sans-serif"],
-      },
       colors: {
-        primary: "#3BB77E",
-        secondary: "#7e7e7e",
-        tertiary: "#253D4E",
-        reddish: "#F9004D"
+        background: "var(--background)",
+        foreground: "var(--foreground)",
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [],
 };
