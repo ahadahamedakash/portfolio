@@ -42,7 +42,7 @@ function MarqueeLine({ skills, direction, speed = 50 }: MarqueeLineProps) {
               <img
                 src={skill.logo}
                 alt={skill.name}
-                className="w-full h-full object-contain filter group-hover:brightness-110 transition-all duration-300"
+                className="w-full h-full object-contain filter group-hover:brightness-120 transition-all duration-300"
                 onError={(e) => {
                   e.currentTarget.style.display = "none";
                 }}

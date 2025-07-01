@@ -7,7 +7,7 @@ export function ExperienceSection() {
   if (experience.length === 0) return null;
 
   return (
-    <section id="experience" className="bg-muted/30">
+    <section id="experience" className="bg-muted/70">
       <div className="container section-padding">
         <SectionHeading
           title="Professional Experience"

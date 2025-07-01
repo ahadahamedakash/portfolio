@@ -6,7 +6,7 @@ import { SectionHeading } from "../section-heading";
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="bg-muted/30 overflow-hidden">
+    <section id="skills" className="bg-muted/70 overflow-hidden">
       <div className="container section-padding">
         <SectionHeading
           title="Skills & Technologies"
@@ -35,7 +35,7 @@ export function SkillsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-center mt-12"
+          className="text-center section-content-padding"
         >
           <p className="text-muted-foreground">
             Continuously learning and exploring new technologies to stay at the

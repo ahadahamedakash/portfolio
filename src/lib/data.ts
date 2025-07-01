@@ -282,7 +282,7 @@ export const projects: Project[] = [
     technologies: ["Next.js", "MDX", "Prisma", "PostgreSQL", "Tailwind CSS"],
     githubUrl: "https://github.com/username/blog-cms",
     liveUrl: "https://blog-cms-demo.vercel.app",
-    featured: false,
+    featured: true,
     completedAt: "2023-07-25",
   },
   {
@@ -326,4 +326,3 @@ export const getFeaturedProjects = () =>
 // Get project by slug
 export const getProjectBySlug = (slug: string) =>
   projects.find((project) => project.slug === slug);
-
