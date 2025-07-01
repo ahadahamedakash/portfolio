@@ -22,7 +22,7 @@ export function ExperienceTimeline() {
           >
             {/* Content */}
             <div className="flex items-start">
-              <div className="mt-3 mr-5 flex flex-col gap-2 shrink-0 w-[120px] lg:w-[220px] text-end">
+              <div className="mt-3 mr-5 flex flex-col gap-2 shrink-0 w-[90px] lg:w-[220px] text-end">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}

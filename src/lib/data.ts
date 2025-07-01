@@ -17,11 +17,9 @@ export interface Experience {
   technologies: string[];
 }
 
-export interface Skill {
+export interface Skills {
   name: string;
-  level: number;
-  category: "frontend" | "backend" | "database" | "tools";
-  icon: string;
+  logo: string;
 }
 
 export interface Project {
@@ -119,33 +117,71 @@ export const experience: Experience[] = [
 ];
 
 // Skills Data
-export const skills: Skill[] = [
-  // Frontend
-  { name: "React.js", level: 95, category: "frontend", icon: "⚛️" },
-  { name: "Next.js", level: 90, category: "frontend", icon: "🔺" },
-  { name: "TypeScript", level: 85, category: "frontend", icon: "📘" },
-  { name: "Tailwind CSS", level: 90, category: "frontend", icon: "🎨" },
-  { name: "HTML/CSS", level: 95, category: "frontend", icon: "🌐" },
-  { name: "Bootstrap 5", level: 85, category: "frontend", icon: "🅱️" },
-  { name: "ShadCN", level: 80, category: "frontend", icon: "🎭" },
-  { name: "DaisyUI", level: 75, category: "frontend", icon: "🌼" },
-  { name: "MUI", level: 80, category: "frontend", icon: "📦" },
-  { name: "React Router", level: 90, category: "frontend", icon: "🛣️" },
-  { name: "Redux Toolkit", level: 85, category: "frontend", icon: "🔄" },
-  { name: "React Bootstrap", level: 80, category: "frontend", icon: "🅱️" },
-
-  // Backend
-  { name: "Node.js", level: 85, category: "backend", icon: "🟢" },
-  { name: "Express.js", level: 80, category: "backend", icon: "🚀" },
-
-  // Database
-  { name: "MongoDB", level: 80, category: "database", icon: "🍃" },
-  { name: "Mongoose", level: 75, category: "database", icon: "🐾" },
-
-  // Tools
-  { name: "Git", level: 90, category: "tools", icon: "📚" },
-  { name: "GitHub", level: 90, category: "tools", icon: "🐙" },
-  { name: "Vitest", level: 70, category: "tools", icon: "🧪" },
+export const skills: Skills[] = [
+  {
+    name: "React",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  },
+  {
+    name: "Next.js",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+  },
+  {
+    name: "TypeScript",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  },
+  {
+    name: "JavaScript",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  },
+  {
+    name: "Tailwind CSS",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+  },
+  {
+    name: "Node.js",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  },
+  {
+    name: "Express.js",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+  },
+  {
+    name: "MongoDB",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+  },
+  {
+    name: "HTML5",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+  },
+  {
+    name: "CSS3",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+  },
+  {
+    name: "Bootstrap",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
+  },
+  {
+    name: "Redux",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg",
+  },
+  {
+    name: "Git",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+  },
+  {
+    name: "GitHub",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+  },
+  {
+    name: "Material-UI",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg",
+  },
+  {
+    name: "Mongoose",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongoose/mongoose-original.svg",
+  },
 ];
 
 // Projects Data
@@ -291,6 +327,3 @@ export const getFeaturedProjects = () =>
 export const getProjectBySlug = (slug: string) =>
   projects.find((project) => project.slug === slug);
 
-// Get skills by category
-export const getSkillsByCategory = (category: Skill["category"]) =>
-  skills.filter((skill) => skill.category === category);
