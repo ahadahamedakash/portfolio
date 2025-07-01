@@ -15,9 +15,9 @@ export function HeroSection() {
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-foreground dark:bg-background">
       {/* Background Animation */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-40 h-40 bg-accent-light/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-float" />
         <div
-          className="absolute bottom-1/4 right-1/4 w-52 h-52 bg-accent/20 rounded-full blur-3xl animate-float"
+          className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/90 rounded-full blur-3xl animate-float"
           style={{ animationDelay: "1s" }}
         />
       </div>

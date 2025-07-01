@@ -83,10 +83,10 @@ export const education: Education[] = [
 export const experience: Experience[] = [
   {
     id: "1",
-    company: "TechCorp Solutions",
-    position: "Full Stack Developer",
-    duration: "2023 - Present",
-    location: "New York, NY",
+    company: "AB Software Solutions",
+    position: "Frontend Web Developer",
+    duration: "Nov 2023 - Feb 2025",
+    location: "Lebanon",
     description: [
       "Developed and maintained 15+ web applications using React, Next.js, and Node.js",
       "Implemented responsive designs that improved user engagement by 40%",
@@ -104,10 +104,10 @@ export const experience: Experience[] = [
   },
   {
     id: "2",
-    company: "StartupXYZ",
-    position: "Frontend Developer",
-    duration: "2022 - 2023",
-    location: "San Francisco, CA",
+    company: "Talentship Global Advisory Forum",
+    position: "Web Developer",
+    duration: "Sept 2023 - Oct 2023",
+    location: "Noida, India",
     description: [
       "Built responsive web applications using React and modern CSS frameworks",
       "Integrated RESTful APIs and managed state using Redux Toolkit",
