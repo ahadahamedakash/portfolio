@@ -1,15 +1,39 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue } from "motion/react";
 import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
+
 import { contactInfo, personalInfo } from "@/lib/data";
+import { animate } from "motion";
 
 export function HeroSection() {
   const scrollToNext = () => {
     const nextSection = document.getElementById("experience");
     nextSection?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const nameTitle = "Hi I'm Ahad Ahamed Akash";
+
+  const nameRef = useRef<HTMLSpanElement>(null);
+  const progress = useMotionValue(0);
+  const [doneTyping, setDoneTyping] = useState(false);
+
+  // Typewriter effect using animate()
+  useEffect(() => {
+    const controls = animate(progress, nameTitle.length, {
+      duration: nameTitle.length * 0.1,
+      onUpdate: (v) => {
+        if (nameRef.current) {
+          nameRef.current.textContent = nameTitle.slice(0, Math.floor(v));
+        }
+      },
+      onComplete: () => setDoneTyping(true),
+    });
+    return () => controls.stop();
+  }, [progress]);
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-foreground dark:bg-background">
@@ -31,13 +55,16 @@ export function HeroSection() {
             className="mb-8"
           >
             <motion.h1
-              className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 text-white"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
+              transition={{ delay: 0.9, duration: 0.8 }}
+              className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 text-white"
             >
               Hi, I&apos;m{" "}
-              <span className="gradient-text  bg-clip-text text-transparent">
+              <span
+                ref={nameRef}
+                className="gradient-text  bg-clip-text text-transparent"
+              >
                 {personalInfo.name}
               </span>
             </motion.h1>
@@ -45,8 +72,10 @@ export function HeroSection() {
             <motion.h2
               className="text-xl sm:text-2xl lg:text-3xl font-medium mb-4 text-white"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
+              animate={
+                doneTyping ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+              }
+              transition={{ delay: doneTyping ? 0.4 : 0, duration: 0.8 }}
             >
               {personalInfo.title}
             </motion.h2>
@@ -54,17 +83,26 @@ export function HeroSection() {
             <motion.p
               className="text-muted dark:text-muted-foreground text-lg sm:text-xl text-light/80 mb-8 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
+              animate={doneTyping ? { opacity: 1, y: 0 } : { opacity: 0, y: 0 }}
+              transition={{ delay: doneTyping ? 0.6 : 0, duration: 0.8 }}
             >
               {personalInfo.subtitle}
+            </motion.p>
+
+            <motion.p
+              className="text-muted dark:text-muted-foreground text-lg sm:text-xl text-light/80 mb-8 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={doneTyping ? { opacity: 1, y: 0 } : { opacity: 0, y: 0 }}
+              transition={{ delay: doneTyping ? 0.6 : 0, duration: 0.8 }}
+            >
+              {personalInfo.bio}
             </motion.p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
+            animate={doneTyping ? { opacity: 1, y: 0 } : { opacity: 0, y: 0 }}
+            transition={{ delay: doneTyping ? 0.9 : 0, duration: 0.8 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
             <Button

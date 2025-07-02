@@ -46,7 +46,7 @@ export function ContactSection() {
     {
       icon: Github,
       label: "GitHub",
-      value: "@alexjohnson",
+      value: "@ahad1033",
       href: contactInfo.socialLinks.github,
       description: "Check out my repositories",
       color: "from-gray-500/20 to-slate-500/20",

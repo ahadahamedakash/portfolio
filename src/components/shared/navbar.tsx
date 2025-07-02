@@ -92,24 +92,6 @@ export function Navbar() {
                   >
                     {item.label}
                   </span>
-                  {/* {isActive && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className={cn(
-                        "absolute inset-0 border-b-4 -z-10",
-                        heroScrolled
-                          ? "border-primary"
-                          : otherThenHome
-                          ? "border-primary"
-                          : "border-white"
-                      )}
-                      transition={{
-                        type: "spring",
-                        bounce: 0.1,
-                        duration: 0.3,
-                      }}
-                    />
-                  )} */}
                   {isActive && (
                     <motion.div
                       className={cn(
@@ -145,7 +127,14 @@ export function Navbar() {
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="h-10 w-10 border border-border text-white"
+              className={cn(
+                "h-10 w-10 border",
+                heroScrolled
+                  ? "text-primary border-primary"
+                  : otherThenHome
+                  ? "text-primary border-primary"
+                  : "text-white border-white"
+              )}
             >
               {isOpen ? (
                 <X className="h-5 w-5" />

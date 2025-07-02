@@ -123,17 +123,16 @@ export default function ProjectCard({
               <Calendar className="w-3 h-3" />
               <span>{new Date(project.completedAt).toLocaleDateString()}</span>
             </div>
-            <Button
-              asChild
-              variant="ghost"
-              size="sm"
-              className="text-primary hover:text-primary-foreground hover:bg-primary"
-            >
-              <Link href={`/projects/${project.slug}`} className="text-white hover:text-white dark:hover-text-muted-foreground">
+            <Link href={`/projects/${project.slug}`} className="">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-primary hover:text-primary-foreground hover:bg-primary dark:hover:bg-white"
+              >
                 View Details
                 <ArrowRight className="w-3 h-3 ml-1" />
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
 
