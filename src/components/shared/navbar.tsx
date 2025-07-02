@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
@@ -23,10 +24,17 @@ export function Navbar() {
 
   const [scrolled, setScrolled] = useState(false);
 
+  const [heroScrolled, setHeroScrolled] = useState(false);
+
+  const otherThenHome = pathname.includes("projects");
+
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const scrollY = window.scrollY;
+      setScrolled(scrollY > 50);
+      setHeroScrolled(scrollY > window.innerHeight);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -61,22 +69,66 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isActive
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
+                  className={`relative flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors`}
                 >
-                  <item.icon className="w-4 h-4" />
-                  <span>{item.label}</span>
-                  {isActive && (
+                  <item.icon
+                    className={cn(
+                      "w-4 h-4",
+                      heroScrolled
+                        ? "text-primary"
+                        : otherThenHome
+                        ? "text-primary"
+                        : "text-white"
+                    )}
+                  />
+                  <span
+                    className={cn(
+                      heroScrolled
+                        ? "text-primary"
+                        : otherThenHome
+                        ? "text-primary"
+                        : "text-white"
+                    )}
+                  >
+                    {item.label}
+                  </span>
+                  {/* {isActive && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-0 bg-primary/10 rounded-md -z-10"
+                      className={cn(
+                        "absolute inset-0 border-b-4 -z-10",
+                        heroScrolled
+                          ? "border-primary"
+                          : otherThenHome
+                          ? "border-primary"
+                          : "border-white"
+                      )}
                       transition={{
                         type: "spring",
-                        bounce: 0.2,
-                        duration: 0.6,
+                        bounce: 0.1,
+                        duration: 0.3,
+                      }}
+                    />
+                  )} */}
+                  {isActive && (
+                    <motion.div
+                      className={cn(
+                        "absolute left-1/2 top-0 h-full -translate-x-1/2 -z-10",
+                        heroScrolled
+                          ? "border-primary"
+                          : otherThenHome
+                          ? "border-primary"
+                          : "border-white"
+                      )}
+                      initial={{ opacity: 0, width: 0 }}
+                      animate={{ opacity: 1, width: "100%" }}
+                      exit={{ opacity: 0, width: 0 }}
+                      transition={{
+                        duration: 0.4,
+                        ease: "easeInOut",
+                      }}
+                      style={{
+                        borderBottomWidth: 4,
                       }}
                     />
                   )}
