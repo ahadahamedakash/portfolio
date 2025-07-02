@@ -60,12 +60,12 @@ export function HeroSection() {
               transition={{ delay: 0.9, duration: 0.8 }}
               className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 text-white"
             >
-              Hi, I&apos;m{" "}
+              {/* Hi, I&apos;m{" "} */}
               <span
                 ref={nameRef}
                 className="gradient-text  bg-clip-text text-transparent"
               >
-                {personalInfo.name}
+                Hi, I&apos;m Ahad Ahamed Akash{/* {personalInfo.name} */}
               </span>
             </motion.h1>
 
