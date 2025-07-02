@@ -188,41 +188,39 @@ export const skills: Skills[] = [
 // Projects Data
 export const projects: Project[] = [
   {
-    slug: "ecommerce-platform",
-    title: "E-Commerce Platform",
+    slug: "tech-store",
+    title: "TechStore - E-commerce",
     shortDescription:
-      "A full-featured e-commerce platform with admin dashboard, payment integration, and inventory management.",
+      "A modern, responsive e-commerce web application built with React 19, featuring a comprehensive public-facing site with authentication, product catalog, shopping cart, and more.",
     fullDescription:
-      "A comprehensive e-commerce solution built with Next.js and Node.js. Features include user authentication, product catalog, shopping cart, payment processing with Stripe, order management, and an admin dashboard for inventory and user management. The platform supports multiple payment methods and includes features like wishlist, product reviews, and real-time notifications.",
-    image:
-      "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "A modern, responsive e-commerce web application built with React 19, featuring a comprehensive public-facing site with authentication, product catalog, shopping cart, and more.",
+    image: "/tech-store.png",
     images: [
       "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=1200",
       "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=1200",
       "https://images.pexels.com/photos/4968391/pexels-photo-4968391.jpeg?auto=compress&cs=tinysrgb&w=1200",
     ],
     technologies: [
-      "Next.js",
+      "React.js",
       "Node.js",
       "MongoDB",
       "Stripe",
       "Tailwind CSS",
       "TypeScript",
     ],
-    githubUrl: "https://github.com/username/ecommerce-platform",
-    liveUrl: "https://ecommerce-demo.vercel.app",
+    githubUrl: "https://github.com/ahad1033/TechStore",
+    liveUrl: "https://tech-store-mu-ashen.vercel.app/",
     featured: true,
-    completedAt: "2024-01-15",
+    completedAt: "2025-01-15",
   },
   {
-    slug: "task-management-app",
-    title: "Task Management App",
+    slug: "stock-management-app",
+    title: "Alishan - Stock Management App",
     shortDescription:
-      "A collaborative task management application with real-time updates and team collaboration features.",
+      "Alishan is a modern, role-based stock management web application built with React 19, Redux Toolkit, Tailwind CSS, and Vite.",
     fullDescription:
-      "A modern task management application designed for teams and individuals. Built with React and Node.js, it features real-time collaboration, drag-and-drop task organization, project templates, time tracking, and detailed analytics. The app includes features like task dependencies, file attachments, comments, and notifications to keep teams synchronized and productive.",
-    image:
-      "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "Alishan is a modern, role-based stock management web application built with React 19, Redux Toolkit, Tailwind CSS, and Vite. This project serves as the frontend of a MERN stack solution, designed to streamline inventory control, invoice processing, expense tracking, and financial analytics in a structured and scalable way.",
+    image: "/alishan.png",
     images: [
       "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200",
       "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=1200",
@@ -236,8 +234,8 @@ export const projects: Project[] = [
       "Express",
       "Redux Toolkit",
     ],
-    githubUrl: "https://github.com/username/task-management",
-    liveUrl: "https://taskmanager-demo.vercel.app",
+    githubUrl: "https://alishan-stock-management.vercel.app/",
+    liveUrl: "https://github.com/ahad1033/alishan-stock-management-client",
     featured: true,
     completedAt: "2023-11-20",
   },
@@ -283,26 +281,25 @@ export const projects: Project[] = [
     technologies: ["Next.js", "MDX", "Prisma", "PostgreSQL", "Tailwind CSS"],
     githubUrl: "https://github.com/username/blog-cms",
     liveUrl: "https://blog-cms-demo.vercel.app",
-    featured: true,
+    featured: false,
     completedAt: "2023-07-25",
   },
   {
-    slug: "portfolio-generator",
-    title: "Portfolio Generator",
+    slug: "medai-assistant",
+    title: "Medai Assistant - Your AI Health Assistant",
     shortDescription:
-      "A tool to generate beautiful portfolio websites from JSON configuration files.",
+      "Get instant access to AI-powered health insights, symptom analysis, and personalized medical guidance. Your intelligent companion for better health decisions.",
     fullDescription:
-      "An innovative portfolio generation tool that allows users to create stunning portfolio websites by simply providing a JSON configuration file. The tool offers multiple themes, customization options, and automatically generates responsive layouts. It includes features like contact forms, project galleries, and blog integration, making it perfect for developers, designers, and creative professionals.",
-    image:
-      "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "Get instant access to AI-powered health insights, symptom analysis, and personalized medical guidance. Your intelligent companion for better health decisions.",
+    image: "/med-ai.png",
     images: [
       "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1200",
       "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1200",
     ],
-    technologies: ["React", "Node.js", "Tailwind CSS", "JSON Schema", "Vercel"],
-    githubUrl: "https://github.com/username/portfolio-generator",
-    liveUrl: "https://portfolio-gen-demo.vercel.app",
-    featured: false,
+    technologies: ["Next", "ShadCN", "Tailwind CSS", "Vercel"],
+    githubUrl: "https://github.com/ahad1033/medAI-assistant",
+    liveUrl: "https://medai-assistant-two.vercel.app/",
+    featured: true,
     completedAt: "2023-05-15",
   },
 ];
@@ -327,4 +324,4 @@ export const getFeaturedProjects = () =>
 // Get project by slug
 export const getProjectBySlug = (slug: string): Project | undefined => {
   return projects?.find((project) => project.slug === slug);
-}
+};
