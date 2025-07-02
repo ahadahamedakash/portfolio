@@ -325,5 +325,6 @@ export const getFeaturedProjects = () =>
   projects.filter((project) => project.featured);
 
 // Get project by slug
-export const getProjectBySlug = (slug: string) =>
-  projects.find((project) => project.slug === slug);
+export const getProjectBySlug = (slug: string): Project | undefined => {
+  return projects?.find((project) => project.slug === slug);
+}
