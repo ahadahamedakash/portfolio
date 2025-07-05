@@ -75,18 +75,18 @@ export function Navbar() {
                     className={cn(
                       "w-4 h-4",
                       heroScrolled
-                        ? "text-primary"
+                        ? "text-primary dark:text-white"
                         : otherThenHome
-                        ? "text-primary"
+                        ? "text-primary "
                         : "text-white"
                     )}
                   />
                   <span
                     className={cn(
                       heroScrolled
-                        ? "text-primary"
+                        ? "text-primary dark:text-white"
                         : otherThenHome
-                        ? "text-primary"
+                        ? "text-primary dark:text-white"
                         : "text-white"
                     )}
                   >
@@ -97,9 +97,9 @@ export function Navbar() {
                       className={cn(
                         "absolute left-1/2 top-0 h-full -translate-x-1/2 -z-10",
                         heroScrolled
-                          ? "border-primary"
+                          ? "border-primary dark:border-white"
                           : otherThenHome
-                          ? "border-primary"
+                          ? "border-primary dark:border-white"
                           : "border-white"
                       )}
                       initial={{ opacity: 0, width: 0 }}
@@ -123,6 +123,7 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
             <ThemeToggle />
+            
             <Button
               variant="ghost"
               size="icon"
@@ -130,10 +131,10 @@ export function Navbar() {
               className={cn(
                 "h-10 w-10 border",
                 heroScrolled
-                  ? "text-primary border-primary"
+                  ? "text-primary border-primary dark:text-white"
                   : otherThenHome
-                  ? "text-primary border-primary"
-                  : "text-white border-white"
+                  ? "text-primary border-primary dark:text-white"
+                  : "text-white"
               )}
             >
               {isOpen ? (
@@ -163,7 +164,7 @@ export function Navbar() {
                     onClick={() => setIsOpen(false)}
                     className={`flex items-center space-x-2 px-3 py-2 rounded-md text-base font-medium transition-colors ${
                       isActive
-                        ? "text-primary bg-primary/10"
+                        ? "text-primary bg-primary/10 dark:text-muted-foreground dark:bg-muted"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted"
                     }`}
                   >

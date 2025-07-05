@@ -1,5 +1,6 @@
 "use client";
 
+import { animate } from "motion";
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue } from "motion/react";
 import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
@@ -7,7 +8,6 @@ import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import { contactInfo, personalInfo } from "@/lib/data";
-import { animate } from "motion";
 
 export function HeroSection() {
   const scrollToNext = () => {
@@ -18,13 +18,21 @@ export function HeroSection() {
   const nameTitle = "Hi I'm Ahad Ahamed Akash";
 
   const nameRef = useRef<HTMLSpanElement>(null);
+
   const progress = useMotionValue(0);
+
   const [doneTyping, setDoneTyping] = useState(false);
 
-  // Typewriter effect using animate()
   useEffect(() => {
+    const charDuration = 0.2;
+    const totalDuration = nameTitle.length * charDuration;
+
+    console.log("totalDuration: ", totalDuration);
+
     const controls = animate(progress, nameTitle.length, {
-      duration: nameTitle.length * 0.1,
+      duration: totalDuration,
+      ease: "easeInOut",
+      delay: 0.2,
       onUpdate: (v) => {
         if (nameRef.current) {
           nameRef.current.textContent = nameTitle.slice(0, Math.floor(v));
@@ -32,6 +40,7 @@ export function HeroSection() {
       },
       onComplete: () => setDoneTyping(true),
     });
+
     return () => controls.stop();
   }, [progress]);
 
@@ -46,7 +55,7 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto py-32 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -60,12 +69,11 @@ export function HeroSection() {
               transition={{ delay: 0.9, duration: 0.8 }}
               className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 text-white"
             >
-              {/* Hi, I&apos;m{" "} */}
               <span
                 ref={nameRef}
                 className="gradient-text  bg-clip-text text-transparent"
               >
-                Hi, I&apos;m Ahad Ahamed Akash{/* {personalInfo.name} */}
+                {nameTitle}
               </span>
             </motion.h1>
 
@@ -81,7 +89,7 @@ export function HeroSection() {
             </motion.h2>
 
             <motion.p
-              className="text-muted dark:text-muted-foreground text-lg sm:text-xl text-light/80 mb-8 max-w-3xl mx-auto"
+              className="text-muted dark:text-muted-foreground text-base md:text-lg sm:text-xl text-light/80 mb-8 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={doneTyping ? { opacity: 1, y: 0 } : { opacity: 0, y: 0 }}
               transition={{ delay: doneTyping ? 0.6 : 0, duration: 0.8 }}
@@ -90,7 +98,7 @@ export function HeroSection() {
             </motion.p>
 
             <motion.p
-              className="text-muted dark:text-muted-foreground text-lg sm:text-xl text-light/80 mb-8 max-w-3xl mx-auto"
+              className="text-muted dark:text-muted-foreground text-xs md:text-lg sm:text-xl text-light/80 mb-8 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={doneTyping ? { opacity: 1, y: 0 } : { opacity: 0, y: 0 }}
               transition={{ delay: doneTyping ? 0.6 : 0, duration: 0.8 }}
@@ -155,7 +163,7 @@ export function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            className="absolute -bottom-20 left-1/2 transform -translate-x-1/2"
+            className="absolute bottom-20 left-1/2 transform -translate-x-1/2"
           >
             <Button
               variant="ghost"

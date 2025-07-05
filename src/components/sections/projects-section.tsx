@@ -27,12 +27,12 @@ export function ProjectsSection() {
         </div>
 
         <div className="text-center section-content-padding">
-          <Button asChild size="lg">
-            <Link href="/projects">
+          <Link href="/projects">
+            <Button size="lg">
               View All Projects
               <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

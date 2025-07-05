@@ -2,8 +2,10 @@
 
 import { motion } from "motion/react";
 import { Calendar, ArrowRight, BookOpen, Clock, Tag } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+
 import { SectionHeading } from "../section-heading";
 
 const blogPosts = [

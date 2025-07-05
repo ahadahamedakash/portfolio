@@ -28,7 +28,7 @@ export function ExperienceTimeline() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 + 0.1 }}
                   viewport={{ once: true }}
-                  className="flex items-center justify-end space-x-1 text-sm text-primary font-semibold"
+                  className="flex justify-end space-x-1 text-sm text-primary dark:text-primary-foreground font-semibold"
                 >
                   <Calendar className="w-4 h-4" />
                   <span>{exp.duration}</span>
@@ -45,7 +45,7 @@ export function ExperienceTimeline() {
                 </motion.div>
               </div>
 
-              <div className="relative pb-10 border-l-2 border-primary/30 group-last:pb-4 pl-6 sm:pl-8 space-y-4">
+              <div className="relative pb-10 border-l-2 border-primary/30 dark:border-muted-foreground group-last:pb-4 pl-6 sm:pl-8 space-y-4">
                 {/* Timeline Dot */}
                 <motion.div
                   initial={{ scale: 0 }}
@@ -57,9 +57,9 @@ export function ExperienceTimeline() {
                     stiffness: 200,
                   }}
                   viewport={{ once: true }}
-                  className="absolute h-4 w-4 -translate-x-1/2 -left-px top-4 rounded-full border-2 border-primary bg-background flex items-center justify-center group-hover:scale-125 transition-transform duration-300"
+                  className="absolute h-4 w-4 -translate-x-1/2 -left-px top-4 rounded-full border-2 border-primary dark:border-primary-foreground bg-background flex items-center justify-center group-hover:scale-125 transition-transform duration-300"
                 >
-                  <div className="h-2 w-2 rounded-full bg-primary" />
+                  <div className="h-2 w-2 rounded-full bg-primary dark:bg-primary-foreground" />
                 </motion.div>
 
                 <motion.div
@@ -70,12 +70,12 @@ export function ExperienceTimeline() {
                   className="space-y-2"
                 >
                   <div className="flex items-center space-x-2">
-                    <Briefcase className="w-5 h-5 text-primary" />
-                    <h3 className="text-lg sm:text-xl font-bold text-primary transition-colors">
+                    <Briefcase className="w-5 h-5 text-primary dark:text-primary-foreground" />
+                    <h3 className="text-lg sm:text-xl font-bold text-primary dark:text-primary-foreground transition-colors">
                       {exp.position}
                     </h3>
                   </div>
-                  <h4 className="text-base sm:text-lg text-primary font-medium">
+                  <h4 className="text-base sm:text-lg text-primary dark:text-muted-foreground font-medium">
                     {exp.company}
                   </h4>
                 </motion.div>
@@ -98,9 +98,9 @@ export function ExperienceTimeline() {
                           delay: index * 0.2 + 0.6 + idx * 0.1,
                         }}
                         viewport={{ once: true }}
-                        className="flex items-start space-x-2 text-sm sm:text-base text-muted-foreground"
+                        className="flex items-start space-x-2 text-sm sm:text-base text-muted-foreground dark:text-muted-foreground"
                       >
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary dark:bg-muted-foreground mt-2 flex-shrink-0" />
                         <span>{item}</span>
                       </motion.li>
                     ))}

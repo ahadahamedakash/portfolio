@@ -55,7 +55,7 @@ export default function ProjectCard({
                 <Button
                   asChild
                   size="sm"
-                  className="bg-white/90 hover:bg-white text-black backdrop-blur-sm"
+                  className="bg-primary/90 hover:bg-primary backdrop-blur-sm"
                 >
                   <a
                     href={project.githubUrl}
@@ -91,7 +91,7 @@ export default function ProjectCard({
         {/* Content */}
         <div className="p-6 space-y-4">
           <div className="space-y-2">
-            <h3 className="text-xl font-bold group-hover:text-primary transition-colors duration-300 line-clamp-1">
+            <h3 className="text-xl font-bold group-hover:text-primary dark:group-hover:text-primary-foreground transition-colors duration-300 line-clamp-1">
               {project.title}
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
@@ -127,7 +127,7 @@ export default function ProjectCard({
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-primary hover:text-primary-foreground hover:bg-primary dark:hover:bg-white"
+                className="text-primary dark:text-foreground hover:text-primary-foreground dark:hover:text-primary hover:bg-primary dark:hover:bg-white"
               >
                 View Details
                 <ArrowRight className="w-3 h-3 ml-1" />

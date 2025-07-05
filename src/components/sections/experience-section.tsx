@@ -11,7 +11,7 @@ export function ExperienceSection() {
       <div className="container section-padding">
         <SectionHeading
           title="Professional Experience"
-          subtitle="My journey through the world of software development"
+          subtitle="My journey through the world of web development"
         />
 
         <ExperienceTimeline />

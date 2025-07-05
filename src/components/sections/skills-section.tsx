@@ -21,7 +21,7 @@ export function SkillsSection() {
           className="relative"
         >
           {/* Background gradient for better visual effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-background/50 dark:from-primary/50 dark:via-transparent dark:to-primary/50 z-10 pointer-events-none" />
 
           <SkillsMarquee />
 

@@ -17,7 +17,7 @@ export function SectionHeading({
       viewport={{ once: true }}
       className="text-center mb-16"
     >
-      <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary bg:text-background">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary dark:text-primary-foreground">
         {title}
       </h2>
       <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
