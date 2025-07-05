@@ -318,7 +318,7 @@ export const projects: Project[] = [
 
 // Contact Information
 export const contactInfo: ContactInfo = {
-  email: "ahad.dev2@mail.com",
+  email: "ahad.dev2@gmail.com",
   phone: "+88 01636428995",
   address: "Narayanganj, Bangladesh",
   socialLinks: {
