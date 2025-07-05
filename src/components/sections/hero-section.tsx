@@ -24,7 +24,7 @@ export function HeroSection() {
   const [doneTyping, setDoneTyping] = useState(false);
 
   useEffect(() => {
-    const charDuration = 0.2;
+    const charDuration = 0.15;
     const totalDuration = nameTitle.length * charDuration;
 
     console.log("totalDuration: ", totalDuration);
@@ -71,7 +71,7 @@ export function HeroSection() {
             >
               <span
                 ref={nameRef}
-                className="gradient-text  bg-clip-text text-transparent"
+                className="font-heading gradient-text bg-clip-text text-transparent"
               >
                 {nameTitle}
               </span>

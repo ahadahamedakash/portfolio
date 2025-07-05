@@ -129,7 +129,7 @@ export function ExperienceTimeline() {
                       >
                         <Badge
                           variant="secondary"
-                          className="text-xs hover:bg-primary/20 transition-colors"
+                          className="text-xs text-primary dark:text-background font-bold hover:bg-primary/20 transition-colors"
                         >
                           {tech}
                         </Badge>

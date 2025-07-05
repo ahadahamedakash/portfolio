@@ -105,7 +105,7 @@ export default function ProjectCard({
               <Badge
                 key={tech}
                 variant="secondary"
-                className="text-xs px-2 py-1 bg-muted/50 hover:bg-primary/10 transition-colors"
+                className="text-xs px-2 py-1 bg-muted/50 dark:text-background font-bold hover:bg-primary/10 transition-colors"
               >
                 {tech}
               </Badge>
