@@ -1,13 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowLeft, Github, ExternalLink, Calendar, Tag } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowLeft, Github, ExternalLink, Tag } from "lucide-react";
+
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Card, CardContent } from "@/components/ui/card";
+
 import type { Project } from "@/lib/data";
 
 interface ProjectDetailProps {
@@ -39,13 +41,13 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                   alt={project.title}
                   width={600}
                   height={400}
-                  className="w-full h-80 object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
 
               {project.images.length > 1 && (
                 <div className="grid grid-cols-2 gap-4">
-                  {project.images.slice(1, 3).map((image, index) => (
+                  {project.images.slice(1, 5).map((image, index) => (
                     <div
                       key={index}
                       className="relative overflow-hidden rounded-lg"
@@ -55,7 +57,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                         alt={`${project.title} screenshot ${index + 2}`}
                         width={300}
                         height={200}
-                        className="w-full h-40 object-cover"
+                        className="w-full h-40 object-cover object-top"
                       />
                     </div>
                   ))}
@@ -85,29 +87,57 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                     Live Demo
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="w-4 h-4 mr-2" />
-                    View Code
-                  </a>
-                </Button>
+
+                {project.githubBackend ? (
+                  <>
+                    <Button asChild variant="outline" size="lg">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="w-4 h-4 mr-2" />
+                        Frontend Code
+                      </a>
+                    </Button>
+                    <Button asChild variant="outline" size="lg">
+                      <a
+                        href={project.githubBackend}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="w-4 h-4 mr-2" />
+                        Backend Code
+                      </a>
+                    </Button>
+                  </>
+                ) : (
+                  <Button asChild variant="outline" size="lg">
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github className="w-4 h-4 mr-2" />
+                      View Code
+                    </a>
+                  </Button>
+                )}
               </div>
 
               <Separator />
 
               <Card>
                 <CardContent className="p-6 space-y-4">
-                  <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                  {/* <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                     <Calendar className="w-4 h-4" />
                     <span>
                       Completed:{" "}
                       {new Date(project.completedAt).toLocaleDateString()}
                     </span>
-                  </div>
+                  </div> */}
+
+                  <Badge>Still evolving</Badge>
 
                   <div>
                     <div className="flex items-center space-x-2 mb-3">
@@ -116,18 +146,12 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="secondary">
+                        <Badge key={tech} variant="secondary" className="">
                           {tech}
                         </Badge>
                       ))}
                     </div>
                   </div>
-
-                  {project.featured && (
-                    <div className="flex items-center space-x-2">
-                      <Badge variant="default">Featured Project</Badge>
-                    </div>
-                  )}
                 </CardContent>
               </Card>
             </div>
