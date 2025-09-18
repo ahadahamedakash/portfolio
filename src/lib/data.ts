@@ -45,7 +45,6 @@ export interface ContactInfo {
     github: string;
     linkedin: string;
     twitter: string;
-    portfolio: string;
   };
 }
 
@@ -352,14 +351,13 @@ export const projects: Project[] = [
 
 // Contact Information
 export const contactInfo: ContactInfo = {
-  email: "ahad.dev2@gmail.com",
+  email: "ahadahamedakash@gmail.com",
   phone: "+88 01636428995",
   address: "Narayanganj, Bangladesh",
   socialLinks: {
     github: "https://github.com/ahad1033",
     linkedin: "https://linkedin.com/in/ahadahamed",
     twitter: "https://twitter.com/ah1033ad",
-    portfolio: "https://ahadahamed.dev",
   },
 };
 
