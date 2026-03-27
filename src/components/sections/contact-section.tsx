@@ -5,8 +5,8 @@ import {
   Mail,
   Phone,
   MapPin,
-  Github,
-  Linkedin,
+  Code,
+  Building,
   ExternalLink,
   MessageCircle,
 } from "lucide-react";
@@ -44,7 +44,7 @@ export function ContactSection() {
       iconColor: "text-purple-500",
     },
     {
-      icon: Github,
+      icon: Code,
       label: "GitHub",
       value: "@ahadahamedakash",
       href: contactInfo.socialLinks.github,
@@ -53,7 +53,7 @@ export function ContactSection() {
       iconColor: "text-gray-600 dark:text-gray-400",
     },
     {
-      icon: Linkedin,
+      icon: Building,
       label: "LinkedIn",
       value: "Ahad Ahamed Akash",
       href: contactInfo.socialLinks.linkedin,

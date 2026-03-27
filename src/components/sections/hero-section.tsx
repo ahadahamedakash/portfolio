@@ -1,48 +1,35 @@
 "use client";
 
-import { animate } from "motion";
-import { useEffect, useRef, useState } from "react";
-import { motion, useMotionValue } from "motion/react";
-import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
+import { useRef } from "react";
+import { motion } from "motion/react";
+import { ArrowDown, Download, Code, Building, Mail } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
 import { contactInfo, personalInfo } from "@/lib/data";
+import { TYPING_ANIMATION } from "@/lib/constants";
+import { useScroll } from "@/hooks/use-scroll";
+import { useTypingAnimation } from "@/hooks/use-animation";
 
 export function HeroSection() {
-  const scrollToNext = () => {
-    const nextSection = document.getElementById("experience");
-    nextSection?.scrollIntoView({ behavior: "smooth" });
-  };
+  // Use custom scroll hook instead of direct DOM manipulation
+  const { scrollToElement } = useScroll();
 
   const nameTitle = "Hi I'm Ahad Ahamed Akash";
 
   const nameRef = useRef<HTMLSpanElement>(null);
 
-  const progress = useMotionValue(0);
+  // Use custom typing animation hook with constants
+  const { typedText, isComplete: doneTyping } = useTypingAnimation(
+    nameTitle,
+    TYPING_ANIMATION.CHAR_DURATION,
+    undefined
+  );
 
-  const [doneTyping, setDoneTyping] = useState(false);
-
-  useEffect(() => {
-    const charDuration = 0.15;
-    const totalDuration = nameTitle.length * charDuration;
-
-    console.log("totalDuration: ", totalDuration);
-
-    const controls = animate(progress, nameTitle.length, {
-      duration: totalDuration,
-      ease: "easeInOut",
-      delay: 0.2,
-      onUpdate: (v) => {
-        if (nameRef.current) {
-          nameRef.current.textContent = nameTitle.slice(0, Math.floor(v));
-        }
-      },
-      onComplete: () => setDoneTyping(true),
-    });
-
-    return () => controls.stop();
-  }, [progress]);
+  // Update ref with typed text
+  if (nameRef.current && nameRef.current.textContent !== typedText) {
+    nameRef.current.textContent = typedText;
+  }
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-foreground dark:bg-background">
@@ -134,7 +121,7 @@ export function HeroSection() {
                 whileTap={{ scale: 0.95 }}
                 className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
               >
-                <Github className="w-6 h-6 text-white" />
+                <Code className="w-6 h-6 text-white" />
               </motion.a>
 
               <motion.a
@@ -145,7 +132,7 @@ export function HeroSection() {
                 whileTap={{ scale: 0.95 }}
                 className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
               >
-                <Linkedin className="w-6 h-6 text-white" />
+                <Building className="w-6 h-6 text-white" />
               </motion.a>
 
               <motion.a
@@ -168,7 +155,7 @@ export function HeroSection() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={scrollToNext}
+              onClick={() => scrollToElement("experience")}
               className="animate-bounce text-white hover:bg-white/10 rounded-full p-2"
             >
               <ArrowDown className="w-6 h-6" />

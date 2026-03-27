@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowLeft, Github, ExternalLink, Tag } from "lucide-react";
+import { ArrowLeft, Code, ExternalLink, Tag } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -42,6 +42,9 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                   width={600}
                   height={400}
                   className="w-full h-full object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAB//2Q=="
                 />
               </div>
 
@@ -58,6 +61,9 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                         width={300}
                         height={200}
                         className="w-full h-40 object-cover object-top"
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAB//2Q=="
                       />
                     </div>
                   ))}
@@ -96,7 +102,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Github className="w-4 h-4 mr-2" />
+                        <Code className="w-4 h-4 mr-2" />
                         Frontend Code
                       </a>
                     </Button>
@@ -106,7 +112,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Github className="w-4 h-4 mr-2" />
+                        <Code className="w-4 h-4 mr-2" />
                         Backend Code
                       </a>
                     </Button>
@@ -118,7 +124,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Github className="w-4 h-4 mr-2" />
+                      <Code className="w-4 h-4 mr-2" />
                       View Code
                     </a>
                   </Button>

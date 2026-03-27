@@ -10,6 +10,8 @@ import { Menu, X, Home, Briefcase, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import { ThemeToggle } from "../theme/theme-toggle";
+import { useScroll } from "@/hooks/use-scroll";
+import { SCROLL_THRESHOLD } from "@/lib/constants";
 
 const navItems = [
   { href: "/", label: "Home", icon: Home },
@@ -22,22 +24,23 @@ export function Navbar() {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const [scrolled, setScrolled] = useState(false);
+  // Use custom scroll hook with constant threshold
+  const { scrolled } = useScroll(SCROLL_THRESHOLD.NAVBAR);
 
+  // Track hero scroll state
   const [heroScrolled, setHeroScrolled] = useState(false);
-
-  const otherThenHome = pathname.includes("projects");
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      setScrolled(scrollY > 50);
-      setHeroScrolled(scrollY > window.innerHeight);
+      setHeroScrolled(scrollY > (typeof window !== "undefined" ? window.innerHeight : 0));
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const otherThenHome = pathname.includes("projects");
 
   return (
     <motion.nav
@@ -48,11 +51,17 @@ export function Navbar() {
           ? "dark:bg-background/90 backdrop-blur-md border-b border-border/10"
           : "bg-transparent border-border/10"
       }`}
+      role="navigation"
+      aria-label="Main navigation"
     >
       <div className="container py-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link
+            href="/"
+            className="flex items-center space-x-2"
+            aria-label="Ahad Ahamed Akash - Home"
+          >
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="font-bold text-2xl gradient-text"
@@ -62,7 +71,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <nav aria-label="Primary navigation" className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
               return (
@@ -70,7 +79,9 @@ export function Navbar() {
                   key={item.href}
                   href={item.href}
                   className={`relative flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors`}
+                  aria-current={isActive ? "page" : undefined}
                 >
+                  <span className="sr-only">{item.label}</span>
                   <item.icon
                     className={cn(
                       "w-4 h-4",
@@ -80,6 +91,7 @@ export function Navbar() {
                         ? "text-primary "
                         : "text-white"
                     )}
+                    aria-hidden="true"
                   />
                   <span
                     className={cn(
@@ -118,16 +130,19 @@ export function Navbar() {
               );
             })}
             <ThemeToggle />
-          </div>
+          </nav>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
             <ThemeToggle />
-            
+
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
               className={cn(
                 "h-10 w-10 border",
                 heroScrolled
@@ -138,9 +153,9 @@ export function Navbar() {
               )}
             >
               {isOpen ? (
-                <X className="h-5 w-5" />
+                <X className="h-5 w-5" aria-hidden="true" />
               ) : (
-                <Menu className="h-5 w-5" />
+                <Menu className="h-5 w-5" aria-hidden="true" />
               )}
             </Button>
           </div>
@@ -153,6 +168,9 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden border-t border-border bg-background/95 backdrop-blur-md"
+            id="mobile-menu"
+            role="navigation"
+            aria-label="Mobile navigation"
           >
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => {
@@ -167,8 +185,9 @@ export function Navbar() {
                         ? "text-primary bg-primary/10 dark:text-muted-foreground dark:bg-muted"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted"
                     }`}
+                    aria-current={isActive ? "page" : undefined}
                   >
-                    <item.icon className="w-5 h-5" />
+                    <item.icon className="w-5 h-5" aria-hidden="true" />
                     <span>{item.label}</span>
                   </Link>
                 );
