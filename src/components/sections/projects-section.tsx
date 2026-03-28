@@ -20,7 +20,7 @@ export function ProjectsSection() {
           subtitle="A showcase of my recent work and personal projects"
         />
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {featuredProjects.map((project, index) => (
             <ProjectCard key={index + 1} project={project} index={index} />
           ))}

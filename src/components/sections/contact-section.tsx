@@ -81,7 +81,7 @@ export function ContactSection() {
             projects"
         />
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {contactStats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -108,7 +108,7 @@ export function ContactSection() {
                   />
 
                   {/* Content */}
-                  <div className="relative p-6 space-y-4">
+                  <div className="relative p-4 sm:p-6 space-y-3 sm:space-y-4">
                     {/* Icon */}
                     <div className="flex items-center justify-between">
                       <div

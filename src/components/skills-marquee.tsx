@@ -18,9 +18,9 @@ function MarqueeLine({ skills, direction, speed = 50 }: MarqueeLineProps) {
   return (
     <div className="relative overflow-hidden py-4">
       <motion.div
-        className="flex space-x-8 whitespace-nowrap"
+        className="flex space-x-6 sm:space-x-8 whitespace-nowrap"
         animate={{
-          x: direction === "left" ? [0, -1920] : [-1920, 0],
+          x: direction === "left" ? [0, -1500] : [-1500, 0],
         }}
         transition={{
           x: {
@@ -34,11 +34,11 @@ function MarqueeLine({ skills, direction, speed = 50 }: MarqueeLineProps) {
         {[...skills, ...skills, ...skills].map((skill, index) => (
           <motion.div
             key={`${skill.name}-${index}`}
-            className="flex flex-col items-center justify-center min-w-[60px] md:min-w-[120px] group"
+            className="flex flex-col items-center justify-center min-w-[50px] sm:min-w-[60px] md:min-w-[120px] group"
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <div className="w-16 h-16 mb-3 p-3 rounded-xl bg-background border border-border shadow-sm group-hover:shadow-lg group-hover:border-primary/50 transition-all duration-300">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-2 sm:mb-3 p-2 sm:p-3 rounded-xl bg-background border border-border shadow-sm group-hover:shadow-lg group-hover:border-primary/50 transition-all duration-300">
               <img
                 src={skill.logo}
                 alt={skill.name}
@@ -48,7 +48,7 @@ function MarqueeLine({ skills, direction, speed = 50 }: MarqueeLineProps) {
                 }}
               />
             </div>
-            <span className="text-sm font-medium text-muted-foreground dark:text-white group-hover:text-foreground transition-colors duration-300">
+            <span className="text-xs sm:text-sm font-medium text-muted-foreground dark:text-white group-hover:text-foreground transition-colors duration-300">
               {skill.name}
             </span>
           </motion.div>

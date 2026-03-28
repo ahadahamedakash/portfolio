@@ -54,7 +54,7 @@ export function Navbar() {
       role="navigation"
       aria-label="Main navigation"
     >
-      <div className="container py-4">
+      <div className="container py-3 sm:py-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link
@@ -71,14 +71,14 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav aria-label="Primary navigation" className="hidden md:flex items-center space-x-8">
+          <nav aria-label="Primary navigation" className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors`}
+                  className={`relative flex items-center space-x-1 min-h-[44px] px-3 py-2 rounded-md text-sm font-medium transition-colors`}
                   aria-current={isActive ? "page" : undefined}
                 >
                   <span className="sr-only">{item.label}</span>
@@ -144,7 +144,7 @@ export function Navbar() {
               aria-controls="mobile-menu"
               aria-label={isOpen ? "Close menu" : "Open menu"}
               className={cn(
-                "h-10 w-10 border",
+                "min-h-[44px] min-w-[44px] border",
                 heroScrolled
                   ? "text-primary border-primary dark:text-white"
                   : otherThenHome
@@ -167,12 +167,13 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-border bg-background/95 backdrop-blur-md"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden border-t border-border bg-background/95 backdrop-blur-md overflow-hidden"
             id="mobile-menu"
             role="navigation"
             aria-label="Mobile navigation"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="px-2 pt-2 pb-4 space-y-1">
               {navItems.map((item) => {
                 const isActive = pathname === item.href;
                 return (
@@ -180,14 +181,14 @@ export function Navbar() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center space-x-2 px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    className={`flex items-center space-x-3 min-h-[44px] px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
                       isActive
-                        ? "text-primary bg-primary/10 dark:text-muted-foreground dark:bg-muted"
+                        ? "text-primary bg-primary/10 dark:text-foreground dark:bg-primary/20"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted"
                     }`}
                     aria-current={isActive ? "page" : undefined}
                   >
-                    <item.icon className="w-5 h-5" aria-hidden="true" />
+                    <item.icon className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
                     <span>{item.label}</span>
                   </Link>
                 );

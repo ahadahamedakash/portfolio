@@ -42,19 +42,19 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto py-32 px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mb-8"
+            className="mb-6 sm:mb-8"
           >
             <motion.h1
               initial={{ opacity: 0, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.8 }}
-              className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 text-white"
+              className="text-3xl xs:text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 text-white"
             >
               <span
                 ref={nameRef}
@@ -65,7 +65,7 @@ export function HeroSection() {
             </motion.h1>
 
             <motion.h2
-              className="text-xl sm:text-2xl lg:text-3xl font-medium mb-4 text-white"
+              className="text-lg xs:text-xl sm:text-2xl lg:text-3xl font-medium mb-3 sm:mb-4 text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={
                 doneTyping ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
@@ -76,7 +76,7 @@ export function HeroSection() {
             </motion.h2>
 
             <motion.p
-              className="text-muted dark:text-muted-foreground text-base md:text-lg sm:text-xl text-light/80 mb-8 max-w-3xl mx-auto"
+              className="text-muted dark:text-muted-foreground text-sm xs:text-base sm:text-lg md:text-xl text-light/80 mb-6 sm:mb-8 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={doneTyping ? { opacity: 1, y: 0 } : { opacity: 0, y: 0 }}
               transition={{ delay: doneTyping ? 0.6 : 0, duration: 0.8 }}
@@ -85,7 +85,7 @@ export function HeroSection() {
             </motion.p>
 
             <motion.p
-              className="text-muted dark:text-muted-foreground text-xs md:text-lg sm:text-xl text-light/80 mb-8 max-w-3xl mx-auto"
+              className="text-muted dark:text-muted-foreground text-xs xs:text-sm sm:text-base md:text-lg text-light/80 mb-6 sm:mb-8 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={doneTyping ? { opacity: 1, y: 0 } : { opacity: 0, y: 0 }}
               transition={{ delay: doneTyping ? 0.6 : 0, duration: 0.8 }}
@@ -98,17 +98,17 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={doneTyping ? { opacity: 1, y: 0 } : { opacity: 0, y: 0 }}
             transition={{ delay: doneTyping ? 0.9 : 0, duration: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12"
           >
             <Button
               size="lg"
               variant="outline"
-              className="bg-accent-light hover:bg-accent text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:scale-105"
+              className="bg-accent-light hover:bg-accent text-white font-semibold px-6 sm:px-8 py-3 rounded-full transition-all duration-300 hover:scale-105"
               asChild
             >
               <a href={personalInfo.resumeUrl} download>
                 <Download className="w-5 h-5 mr-2" />
-                Download Resume
+                <span className="text-sm sm:text-base">Download Resume</span>
               </a>
             </Button>
 
@@ -117,9 +117,10 @@ export function HeroSection() {
                 href={contactInfo.socialLinks.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
+                className="min-h-[44px] min-w-[44px] flex items-center justify-center p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
+                aria-label="GitHub Profile"
               >
                 <Code className="w-6 h-6 text-white" />
               </motion.a>
@@ -128,18 +129,20 @@ export function HeroSection() {
                 href={contactInfo.socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
+                className="min-h-[44px] min-w-[44px] flex items-center justify-center p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
+                aria-label="LinkedIn Profile"
               >
                 <Building className="w-6 h-6 text-white" />
               </motion.a>
 
               <motion.a
                 href={`mailto:${contactInfo.email}`}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
+                className="min-h-[44px] min-w-[44px] flex items-center justify-center p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
+                aria-label="Send Email"
               >
                 <Mail className="w-6 h-6 text-white" />
               </motion.a>
@@ -150,13 +153,14 @@ export function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            className="absolute bottom-20 left-1/2 transform -translate-x-1/2"
+            className="absolute bottom-16 sm:bottom-20 left-1/2 transform -translate-x-1/2"
           >
             <Button
               variant="ghost"
               size="icon"
               onClick={() => scrollToElement("experience")}
-              className="animate-bounce text-white hover:bg-white/10 rounded-full p-2"
+              className="min-h-[44px] min-w-[44px] animate-bounce text-white hover:bg-white/10 rounded-full p-2"
+              aria-label="Scroll to experience section"
             >
               <ArrowDown className="w-6 h-6" />
             </Button>

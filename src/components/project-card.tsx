@@ -58,7 +58,8 @@ export default function ProjectCard({
                 <Button
                   asChild
                   size="sm"
-                  className="bg-primary/90 hover:bg-primary backdrop-blur-sm"
+                  className="min-h-[44px] min-w-[44px] bg-primary/90 hover:bg-primary backdrop-blur-sm"
+                  aria-label="View GitHub Repository"
                 >
                   <a
                     href={project.githubUrl}
@@ -76,7 +77,8 @@ export default function ProjectCard({
                 <Button
                   asChild
                   size="sm"
-                  className="bg-primary/90 hover:bg-primary text-primary-foreground backdrop-blur-sm"
+                  className="min-h-[44px] min-w-[44px] bg-primary/90 hover:bg-primary text-primary-foreground backdrop-blur-sm"
+                  aria-label="View Live Site"
                 >
                   <a
                     href={project.liveUrl}
@@ -92,7 +94,7 @@ export default function ProjectCard({
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-4">
+        <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
           <div className="space-y-2">
             <h3 className="text-xl font-bold group-hover:text-primary dark:group-hover:text-primary-foreground transition-colors duration-300 line-clamp-1">
               {project.title}
