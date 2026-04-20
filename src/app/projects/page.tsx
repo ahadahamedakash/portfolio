@@ -4,45 +4,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import ProjectCard from "@/components/ui/ProjectCard";
-
-const projects = [
-  {
-    name: "Alishan",
-    description: "Small businesses run on spreadsheets. I built a role-based stock management platform — JWT-secured, real-time dashboards, 35% smaller bundle.",
-    stack: ["React 19", "Redux Toolkit", "Node.js", "MongoDB", "Tailwind CSS", "ShadCN"],
-    featured: true,
-    date: "2024",
-    problem: "Small businesses struggling with inventory management on spreadsheets",
-    solution: "Role-based stock management with real-time dashboards and JWT authentication",
-  },
-  {
-    name: "TechStore",
-    description: "Full-stack e-commerce with role-based auth, product catalog, filtering, and a complete backend API.",
-    stack: ["React 19", "Redux Toolkit", "Node.js", "Express.js", "MongoDB"],
-    featured: true,
-    date: "2024",
-    problem: "Need for a scalable e-commerce platform with advanced filtering",
-    solution: "Full-stack e-commerce with REST API and role-based access control",
-  },
-  {
-    name: "MedAI Assistant",
-    description: "Modular AI healthcare assistant — symptom checker, nutrition guidance, medical report analysis.",
-    stack: ["Next.js", "ShadCN", "MongoDB", "OpenAI", "Tailwind CSS"],
-    featured: true,
-    date: "2024",
-    problem: "Healthcare information scattered across multiple sources",
-    solution: "AI-powered modular assistant with symptom checker and report analysis",
-  },
-  {
-    name: "SkinoFairy",
-    description: "Skincare blog dedicated to tips, product reviews, and community.",
-    stack: ["Next.js", "ShadCN", "Tailwind CSS"],
-    featured: false,
-    date: "2023",
-    problem: "Lack of centralized skincare information and reviews",
-    solution: "Community-driven blog with product reviews and tips",
-  },
-];
+import { projects } from "@/lib/data";
 
 const filters = ["All", "Featured", "React", "Next.js", "Full-Stack"];
 
@@ -70,14 +32,14 @@ export default function ProjectsPage() {
   const filteredProjects = projects.filter((project) => {
     if (activeFilter === "All") return true;
     if (activeFilter === "Featured") return project.featured;
-    if (activeFilter === "React") return project.stack.some((tech) => tech.toLowerCase().includes("react"));
-    if (activeFilter === "Next.js") return project.stack.some((tech) => tech.toLowerCase().includes("next"));
-    if (activeFilter === "Full-Stack") return project.stack.some((tech) => tech.toLowerCase().includes("node") || tech.toLowerCase().includes("express"));
+    if (activeFilter === "React") return project.technologies.some((tech) => tech.toLowerCase().includes("react"));
+    if (activeFilter === "Next.js") return project.technologies.some((tech) => tech.toLowerCase().includes("next"));
+    if (activeFilter === "Full-Stack") return project.technologies.some((tech) => tech.toLowerCase().includes("node") || tech.toLowerCase().includes("express") || tech.toLowerCase().includes("mongodb"));
     return true;
   });
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg-primary)] px-10 py-20">
+    <div className="min-h-screen bg-[var(--color-bg-primary)] px-6 md:px-10 py-20">
       <div className="max-w-7xl mx-auto">
         {/* Back Link */}
         <motion.div
@@ -131,21 +93,24 @@ export default function ProjectsPage() {
 
         {/* Projects Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {filteredProjects.map((project, index) => (
-            <motion.div key={index} variants={itemVariants}>
+            <motion.div key={project.slug} variants={itemVariants}>
               <ProjectCard
-                name={project.name}
-                description={project.description}
-                stack={project.stack}
+                title={project.title}
+                description={project.shortDescription}
+                image={project.image}
+                images={project.images}
+                stack={project.technologies}
                 featured={project.featured}
-                date={project.date}
-                problem={project.problem}
-                solution={project.solution}
+                year={new Date(project.completedAt).getFullYear().toString()}
+                liveUrl={project.liveUrl}
+                githubUrl={project.githubUrl}
+                index={index}
               />
             </motion.div>
           ))}

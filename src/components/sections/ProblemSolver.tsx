@@ -38,9 +38,16 @@ const stats = [
 // replace with real API data later
 const generateHeatmapData = () => {
   const data: number[] = [];
+  // Use seeded random for consistency between server and client
+  let seed = 12345;
+  const random = () => {
+    seed = (seed * 9301 + 49297) % 233280;
+    return seed / 233280;
+  };
+
   for (let i = 0; i < 52 * 7; i++) {
     // Weighted random: more 0s and 1s, fewer high values
-    const rand = Math.random();
+    const rand = random();
     if (rand < 0.3) data.push(0);
     else if (rand < 0.5) data.push(1);
     else if (rand < 0.7) data.push(2);
