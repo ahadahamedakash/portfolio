@@ -12,9 +12,9 @@ export default function HomePage() {
       <Hero />
       <TheArc />
       <ProblemSolver />
-      <Products />
-      <Skills />
       <Experience />
+      <Skills />
+      <Products />
       <Contact />
     </main>
   );

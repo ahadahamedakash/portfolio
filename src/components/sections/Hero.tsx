@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import GridBackground from "@/components/ui/GridBackground";
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
 
 const phrases = [
   "Building products that ship",
@@ -61,7 +60,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[75dvh] overflow-hidden" style={{ paddingTop: "48px" }}>
+    <section className="relative min-h-[75dvh] overflow-hidden" style={{ paddingTop: "96px", paddingBottom: "96px" }}>
       <GridBackground />
 
       {/* Container - same max-width as other sections */}
@@ -155,7 +154,7 @@ export default function Hero() {
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
               className="w-full max-w-[420px]"
-              style={{ rotate: "-1deg" }}
+              style={{ rotate: "rotate(-1deg)" }}
             >
               {/* Terminal Card */}
               <div
@@ -334,16 +333,6 @@ export default function Hero() {
           </div>
         </div>
 
-      </div>
-
-      {/* SCROLL INDICATOR - Full width, centered */}
-      <div className="flex flex-col items-center justify-center" style={{ paddingTop: "24px", paddingBottom: "24px", marginTop: "0px" }}>
-        <div className="relative flex flex-col items-center gap-2 animate-bounce">
-          <ChevronDown className="w-5 h-5 text-[var(--color-text-tertiary)]" />
-          <span className="font-mono text-xs uppercase tracking-wider text-[var(--color-text-tertiary)]">
-            Scroll
-          </span>
-        </div>
       </div>
 
     </section>

@@ -48,7 +48,7 @@ const itemVariants = {
 
 export default function Experience() {
   return (
-    <section className="px-10 py-20 bg-[var(--color-bg-secondary)]">
+    <section className="bg-[var(--color-bg-secondary)] px-6 md:px-10" style={{ paddingTop: "96px", paddingBottom: "96px" }}>
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <motion.div
