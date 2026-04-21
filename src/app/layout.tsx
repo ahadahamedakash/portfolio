@@ -31,9 +31,20 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ahadahamedakash.com"),
   title: "Ahad Ahamed Akash — Full-Stack Developer & Problem Solver",
   description:
-    "Full-Stack Developer from Bangladesh. I build real products and solve hard problems. React, Next.js, Node.js, competitive programming.",
+    "Full-Stack Developer from Bangladesh specializing in React, Next.js, and Node.js. Building real products and solving algorithmic problems on Codeforces and LeetCode.",
+  keywords: [
+    "Full-Stack Developer",
+    "React Developer",
+    "Next.js",
+    "Bangladesh Developer",
+    "Competitive Programmer",
+    "Ahad Ahamed Akash",
+  ],
+  authors: [{ name: "Ahad Ahamed Akash" }],
+  creator: "Ahad Ahamed Akash",
   manifest: "/manifest.json",
   other: {
     "X-DNS-Prefetch-Control": "on",
@@ -47,12 +58,12 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Ahad Ahamed Akash - Full-Stack Developer & Problem Solver",
-    description:
-      "Full-Stack Developer from Bangladesh. I build real products and solve hard problems. React, Next.js, Node.js, competitive programming.",
     type: "website",
+    locale: "en_US",
     url: "https://ahadahamedakash.com",
-    siteName: "Ahad Portfolio",
+    title: "Ahad Ahamed Akash — Full-Stack Developer & Problem Solver",
+    description: "Full-Stack Developer from Bangladesh. Building real products, solving hard problems.",
+    siteName: "Ahad Ahamed Akash Portfolio",
     images: [
       {
         url: "/og-image.png",
@@ -64,11 +75,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ahad Ahamed Akash — Full-Stack Developer & Problem Solver",
+    title: "Ahad Ahamed Akash — Full-Stack Developer",
     description:
-      "Full-Stack Developer from Bangladesh. I build real products and solve hard problems. React, Next.js, Node.js, competitive programming.",
+      "Full-Stack Developer from Bangladesh. React, Next.js, Node.js, Competitive Programming.",
+    creator: "@ahadahamed",
     images: ["/twitter-image.png"],
-    creator: "@ah1033ad",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -96,6 +111,7 @@ export default function RootLayout({
       className={`${playfairDisplay.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
     >
       <head>
+        <link rel="canonical" href="https://ahad-ahamed.vercel.app" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />

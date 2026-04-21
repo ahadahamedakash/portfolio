@@ -1,12 +1,37 @@
 "use client";
 
-import { useState, useRef } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 
-// Custom GitHub icon component since lucide-react doesn't export Github
-function GithubIcon({ className }: { className?: string }) {
+/**
+ * TypeScript interfaces for type safety and reusability
+ */
+export interface ProjectCardData {
+  slug: string;
+  title: string;
+  description: string;
+  image: string;
+  images?: string[];
+  technologies: string[];
+  featured: boolean;
+  liveUrl?: string;
+  githubUrl?: string;
+  githubBackendUrl?: string;
+  year?: string;
+  completedAt?: string;
+}
+
+export interface ProjectCardProps extends ProjectCardData {
+  index?: number;
+  priority?: boolean;
+}
+
+/**
+ * Reusable GitHub icon component
+ * Extracted for reusability across the codebase
+ */
+export function GithubIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -25,106 +50,203 @@ function GithubIcon({ className }: { className?: string }) {
   );
 }
 
-interface ProjectCardProps {
-  title: string;
-  description: string;
-  image: string;
-  images: string[];
-  stack: string[];
-  featured?: boolean;
-  year?: string;
-  liveUrl?: string;
-  githubUrl?: string;
-  index?: number;
+/**
+ * Tech tag component for consistent styling across all project cards
+ */
+function TechTag({
+  children,
+  variant = "default",
+}: {
+  children: React.ReactNode;
+  variant?: "default" | "more";
+}) {
+  const styles = {
+    default: {
+      backgroundColor: "rgba(255,255,255,0.04)",
+      border: "0.5px solid rgba(255,255,255,0.1)",
+      color: "rgba(242,237,228,0.45)",
+    },
+    more: {
+      backgroundColor: "transparent",
+      border: "0.5px solid rgba(200,132,90,0.4)",
+      color: "#C8845A",
+    },
+  };
+
+  return (
+    <span
+      className="inline-block font-mono"
+      style={{
+        fontSize: "10px",
+        padding: "3px 10px",
+        borderRadius: "4px",
+        ...styles[variant],
+      }}
+    >
+      {children}
+    </span>
+  );
 }
 
+/**
+ * Action button component for Live Demo and GitHub links
+ */
+function ActionButton({
+  href,
+  children,
+  variant = "primary",
+  icon,
+}: {
+  href: string;
+  children: React.ReactNode;
+  variant?: "primary" | "secondary";
+  icon?: React.ReactNode;
+}) {
+  const baseStyles = {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "8px",
+    padding: "10px 16px",
+    borderRadius: "6px",
+    fontSize: "13px",
+    fontWeight: "500",
+    fontFamily: "var(--font-sans)",
+    transition: "opacity 0.2s",
+    textDecoration: "none",
+    cursor: "pointer",
+  } as const;
+
+  const variantStyles = {
+    primary: {
+      backgroundColor: "#B5A06A",
+      color: "#111110",
+      border: "none",
+    },
+    secondary: {
+      backgroundColor: "transparent",
+      color: "rgba(242,237,228,0.65)",
+      border: "1px solid rgba(255,255,255,0.12)",
+    },
+  };
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ ...baseStyles, ...variantStyles[variant] }}
+      className="hover:opacity-80"
+      onMouseEnter={(e) => {
+        e.currentTarget.style.opacity = "0.8";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.opacity = "1";
+      }}
+    >
+      {icon}
+      {children}
+    </a>
+  );
+}
+
+/**
+ * Reusable ProjectCard component
+ *
+ * Features:
+ * - Responsive design (mobile, tablet, desktop)
+ * - 16:9 image with hover zoom effect
+ * - Featured badge support
+ * - Dynamic tech tag display based on screen size
+ * - Multiple action buttons (Live Demo, GitHub, Backend)
+ * - Scroll-triggered animations
+ *
+ * @param props - ProjectCardProps containing project data and display options
+ * @returns JSX element representing the project card
+ */
 export default function ProjectCard({
   title,
   description,
   image,
-  images: _images,
-  stack,
-  featured = false,
-  year,
+  technologies,
+  featured,
   liveUrl,
   githubUrl,
+  githubBackendUrl,
   index = 0,
+  priority = false,
 }: ProjectCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-
-    const rect = cardRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const mouseX = e.clientX - centerX;
-    const mouseY = e.clientY - centerY;
-
-    const maxRotation = 8;
-    const rotateXValue = (mouseY / (rect.height / 2)) * -maxRotation;
-    const rotateYValue = (mouseX / (rect.width / 2)) * maxRotation;
-
-    setRotateX(Math.max(-maxRotation, Math.min(maxRotation, rotateXValue)));
-    setRotateY(Math.max(-maxRotation, Math.min(maxRotation, rotateYValue)));
+  // Responsive tech tag limits
+  const maxTags = {
+    small: 3,   // < 480px
+    mobile: 3,  // < 768px
+    tablet: 4,  // < 1024px
+    desktop: 5, // >= 1024px
   };
 
-  const handleMouseLeave = () => {
-    setRotateX(0);
-    setRotateY(0);
-    setIsHovered(false);
+  // Calculate which tags to show (client-side only for accurate screen size)
+  const getDisplayedTech = () => {
+    if (typeof window === "undefined") return technologies.slice(0, maxTags.desktop);
+
+    const width = window.innerWidth;
+    let limit = maxTags.desktop;
+
+    if (width < 480) limit = maxTags.small;
+    else if (width < 768) limit = maxTags.mobile;
+    else if (width < 1024) limit = maxTags.tablet;
+
+    return technologies.slice(0, limit);
   };
 
-  // Show max 4 tags, then "+N more"
-  const displayedStack = stack.slice(0, 4);
-  const remainingCount = stack.length - 4;
-  const showMore = remainingCount > 0;
-
-  // Priority for first 2 cards
-  const isPriority = index < 2;
+  const displayedTech = getDisplayedTech();
+  const remainingCount = technologies.length - displayedTech.length;
+  const projectNumber = (index + 1).toString().padStart(2, "0");
 
   return (
     <motion.div
-      ref={cardRef}
-      className="relative bg-[var(--color-bg-surface)] rounded-xl border border-[var(--color-border-subtle)] overflow-hidden transition-all duration-300"
-      style={{
-        transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-        transition: isHovered ? "transform 0.1s ease-out, border-color 0.3s" : "transform 0.3s ease-out, border-color 0.3s",
-        borderColor: isHovered ? "var(--color-border-accent)" : "var(--color-border-subtle)",
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
+      className="relative"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      viewport={{ once: true, margin: "-100px" }}
     >
-      {/* Image Area */}
-      <div className="relative h-[220px] overflow-hidden rounded-t-xl bg-[var(--color-bg-surface)]">
+      {/* Image Section */}
+      <div
+        className="relative overflow-hidden"
+        style={{
+          width: "100%",
+          aspectRatio: "16 / 9",
+          borderRadius: "12px 12px 0 0",
+        }}
+      >
         <motion.div
           className="relative w-full h-full"
           whileHover={{ scale: 1.03 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <Image
             src={image}
             alt={title}
             fill
             className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-            priority={isPriority}
+            style={{ objectPosition: "top" }}
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
+            priority={priority || index < 2}
           />
         </motion.div>
 
         {/* Featured Badge */}
         {featured && (
-          <div className="absolute top-0 right-0 z-10">
+          <div className="absolute top-0 left-0 z-10">
             <span
-              className="inline-block px-2.5 py-1 text-[10px] font-medium uppercase rounded-bl-lg"
+              className="inline-block font-mono uppercase"
               style={{
-                backgroundColor: "#C8845A",
+                backgroundColor: "rgba(200,132,90,0.92)",
                 color: "#111110",
-                fontFamily: "var(--font-mono)",
+                fontSize: "10px",
+                fontWeight: "600",
+                padding: "6px 14px",
+                borderRadius: "0 0 8px 0",
               }}
             >
               Featured
@@ -133,107 +255,166 @@ export default function ProjectCard({
         )}
       </div>
 
-      {/* Card Body */}
-      <div className="p-5" style={{ padding: "20px" }}>
-        <h3
-          className="font-display font-medium mb-2 text-[var(--color-text-primary)]"
-          style={{ fontSize: "18px" }}
-        >
-          {title}
-        </h3>
-        <p
-          className="font-sans text-sm leading-relaxed mb-3 text-[var(--color-text-secondary)] line-clamp-2"
-          style={{
-            fontSize: "14px",
-            lineHeight: "1.7",
-            marginBottom: "12px",
-          }}
-        >
-          {description}
-        </p>
-
-        {/* Tech Stack Tags */}
-        <div className="flex flex-wrap gap-2">
-          {displayedStack.map((tech) => (
-            <span
-              key={tech}
-              className="inline-block"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "10px",
-                backgroundColor: "rgba(255,255,255,0.05)",
-                border: "0.5px solid rgba(255,255,255,0.1)",
-                color: "rgba(242,237,228,0.5)",
-                padding: "3px 8px",
-                borderRadius: "4px",
-              }}
-            >
-              {tech}
-            </span>
-          ))}
-          {showMore && (
-            <span
-              className="inline-block"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "10px",
-                backgroundColor: "rgba(255,255,255,0.05)",
-                border: "0.5px solid rgba(255,255,255,0.1)",
-                color: "rgba(242,237,228,0.5)",
-                padding: "3px 8px",
-                borderRadius: "4px",
-              }}
-            >
-              +{remainingCount} more
-            </span>
-          )}
-        </div>
-      </div>
-
-      {/* Footer */}
+      {/* Details Section */}
       <div
-        className="flex items-center justify-between px-5"
         style={{
-          marginTop: "16px",
-          paddingTop: "12px",
-          borderTop: "0.5px solid rgba(255,255,255,0.07)",
-          padding: "12px 20px",
+          backgroundColor: "#161614",
+          border: "1px solid rgba(255,255,255,0.07)",
+          borderTop: "none",
+          borderRadius: "0 0 12px 12px",
+          padding: "28px 32px",
         }}
       >
-        {/* Year/Date */}
-        {year && (
-          <span
-            className="font-mono text-xs text-[var(--color-text-tertiary)]"
-            style={{ fontSize: "11px" }}
-          >
-            {year}
-          </span>
-        )}
+        {/* Desktop/Tablet Layout */}
+        <div className="hidden md:grid" style={{ gridTemplateColumns: "1fr auto", gap: "24px", alignItems: "start" }}>
+          {/* Left: Content */}
+          <div>
+            {/* Project Number */}
+            <div
+              className="font-mono mb-2"
+              style={{
+                fontSize: "11px",
+                color: "rgba(181,160,106,0.4)",
+                marginBottom: "8px",
+              }}
+            >
+              {projectNumber}
+            </div>
 
-        {/* Icon Links */}
-        <div className="flex items-center gap-3 ml-auto">
-          {liveUrl && (
-            <a
-              href={liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:opacity-70 transition-opacity"
-              style={{ color: "#B5A06A" }}
+            {/* Title */}
+            <h3
+              className="font-display font-bold mb-2"
+              style={{
+                fontSize: "22px",
+                color: "#F2EDE4",
+                fontWeight: "700",
+                marginBottom: "10px",
+                lineHeight: "1.2",
+              }}
             >
-              <ExternalLink size={16} />
-            </a>
-          )}
-          {githubUrl && (
-            <a
-              href={githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:opacity-70 transition-opacity"
-              style={{ color: "#B5A06A" }}
+              {title}
+            </h3>
+
+            {/* Description */}
+            <p
+              className="font-sans mb-4"
+              style={{
+                fontSize: "14px",
+                color: "rgba(242,237,228,0.55)",
+                lineHeight: "1.75",
+                marginBottom: "16px",
+                display: "-webkit-box",
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+              }}
             >
-              <GithubIcon className="w-4 h-4" />
-            </a>
-          )}
+              {description}
+            </p>
+
+            {/* Tech Tags */}
+            <div className="flex flex-wrap" style={{ gap: "6px" }}>
+              {displayedTech.map((tech) => (
+                <TechTag key={tech}>{tech}</TechTag>
+              ))}
+              {remainingCount > 0 && <TechTag variant="more">+{remainingCount}</TechTag>}
+            </div>
+          </div>
+
+          {/* Right: Action Buttons */}
+          <div className="flex flex-col" style={{ gap: "10px", alignItems: "flex-end" }}>
+            {liveUrl && (
+              <ActionButton href={liveUrl} variant="primary" icon={<ExternalLink size={14} />}>
+                Live Demo
+              </ActionButton>
+            )}
+
+            {githubUrl && (
+              <ActionButton href={githubUrl} variant="secondary" icon={<GithubIcon />}>
+                {githubBackendUrl ? "Frontend" : "Source Code"}
+              </ActionButton>
+            )}
+
+            {githubBackendUrl && (
+              <ActionButton href={githubBackendUrl} variant="secondary" icon={<GithubIcon />}>
+                Backend
+              </ActionButton>
+            )}
+          </div>
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="md:hidden flex flex-col">
+          {/* Content */}
+          <div style={{ marginBottom: "16px" }}>
+            {/* Project Number */}
+            <div
+              className="font-mono mb-2"
+              style={{
+                fontSize: "11px",
+                color: "rgba(181,160,106,0.4)",
+                marginBottom: "8px",
+              }}
+            >
+              {projectNumber}
+            </div>
+
+            {/* Title */}
+            <h3
+              className="font-display font-bold mb-2"
+              style={{
+                fontSize: "22px",
+                color: "#F2EDE4",
+                fontWeight: "700",
+                marginBottom: "10px",
+                lineHeight: "1.2",
+              }}
+            >
+              {title}
+            </h3>
+
+            {/* Description */}
+            <p
+              className="font-sans mb-4"
+              style={{
+                fontSize: "14px",
+                color: "rgba(242,237,228,0.55)",
+                lineHeight: "1.75",
+                marginBottom: "16px",
+              }}
+            >
+              {description}
+            </p>
+
+            {/* Tech Tags */}
+            <div className="flex flex-wrap" style={{ gap: "6px", marginBottom: "16px" }}>
+              {displayedTech.map((tech) => (
+                <TechTag key={tech}>{tech}</TechTag>
+              ))}
+              {remainingCount > 0 && <TechTag variant="more">+{remainingCount}</TechTag>}
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-wrap" style={{ gap: "8px" }}>
+            {liveUrl && (
+              <ActionButton href={liveUrl} variant="primary" icon={<ExternalLink size={14} />}>
+                Live Demo
+              </ActionButton>
+            )}
+
+            {githubUrl && (
+              <ActionButton href={githubUrl} variant="secondary" icon={<GithubIcon />}>
+                {githubBackendUrl ? "Frontend" : "Source"}
+              </ActionButton>
+            )}
+
+            {githubBackendUrl && (
+              <ActionButton href={githubBackendUrl} variant="secondary" icon={<GithubIcon />}>
+                Backend
+              </ActionButton>
+            )}
+          </div>
         </div>
       </div>
     </motion.div>

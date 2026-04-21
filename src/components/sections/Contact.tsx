@@ -120,6 +120,7 @@ export default function Contact() {
 
   return (
     <section
+      id="contact"
       className="relative bg-[var(--color-bg-primary)] overflow-hidden"
       style={{
         paddingTop: "96px",

@@ -10,17 +10,35 @@ const skillGroups = [
   },
   {
     label: "State & Data",
-    skills: ["Redux Toolkit", "Tanstack Query", "React Context API", "React Hook Form"],
+    skills: [
+      "Redux Toolkit",
+      "Tanstack Query",
+      "React Context API",
+      "React Hook Form",
+    ],
     accent: "gold",
   },
   {
     label: "UI & Style",
-    skills: ["Tailwind CSS", "ShadCN", "Material UI", "Framer Motion", "DaisyUI"],
+    skills: [
+      "Tailwind CSS",
+      "ShadCN",
+      "Material UI",
+      "Framer Motion",
+      "DaisyUI",
+    ],
     accent: "gold",
   },
   {
     label: "Backend",
-    skills: ["Node.js", "Express.js", "MongoDB", "Mongoose", "JWT", "REST APIs"],
+    skills: [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "JWT",
+      "REST APIs",
+    ],
     accent: "gold",
   },
   {
@@ -74,7 +92,7 @@ const accentColors = {
 export default function Skills() {
   return (
     <section className="px-10 py-20 bg-[var(--color-bg-primary)]">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto  px-6 md:px-10">
         {/* Section Header */}
         <motion.div
           className="mb-12"
@@ -89,10 +107,7 @@ export default function Skills() {
           >
             // tech_stack.map(skill =&gt; mastery)
           </motion.p>
-          <motion.h2
-            variants={itemVariants}
-            className="font-display text-5xl"
-          >
+          <motion.h2 variants={itemVariants} className="font-display text-5xl">
             Skills as a System
           </motion.h2>
         </motion.div>
@@ -118,13 +133,19 @@ export default function Skills() {
               {/* Top Accent Line */}
               <div
                 className="absolute top-0 left-0 right-0 h-0.5 rounded-t-xl"
-                style={{ backgroundColor: accentColors[group.accent as keyof typeof accentColors] }}
+                style={{
+                  backgroundColor:
+                    accentColors[group.accent as keyof typeof accentColors],
+                }}
               />
 
               {/* Group Label */}
               <h3
                 className="font-mono text-[11px] uppercase tracking-wider mb-4"
-                style={{ color: accentColors[group.accent as keyof typeof accentColors] }}
+                style={{
+                  color:
+                    accentColors[group.accent as keyof typeof accentColors],
+                }}
               >
                 {group.label}
               </h3>

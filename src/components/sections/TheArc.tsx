@@ -6,19 +6,22 @@ const cards = [
   {
     year: "2018",
     label: "Medical Diploma",
-    description: "Most developers start with code. I started with anatomy. Graduated with a medical diploma — then decided to build a different kind of future.",
+    description:
+      "Most developers start with code. I started with anatomy. Graduated with a medical diploma — then decided to build a different kind of future.",
     borderColor: "var(--color-gold)",
   },
   {
     year: "2023",
     label: "First Dev Role",
-    description: "Taught myself React through Programming Hero. Landed a remote Frontend Developer role at AB Software Solutions in Beirut within months.",
+    description:
+      "Taught myself React through Programming Hero. Landed a remote Frontend Developer role at AB Software Solutions in Beirut within months.",
     borderColor: "var(--color-copper)",
   },
   {
     year: "Now",
     label: "Builder + Solver",
-    description: "Shipping real products. Deepening CS fundamentals at Phitron. Competing on Codeforces, LeetCode, and CodeChef every week.",
+    description:
+      "Shipping real products. Deepening CS fundamentals at Phitron. Competing on Codeforces, LeetCode, and CodeChef every week.",
     borderColor: "var(--color-sage)",
   },
 ];
@@ -49,7 +52,7 @@ const cardVariants = {
 export default function TheArc() {
   return (
     <section className="px-10 py-20 bg-[var(--color-bg-secondary)]">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         {/* Section Heading */}
         <div className="mb-16">
           <h2 className="font-display text-4xl md:text-5xl mb-3">The Arc</h2>

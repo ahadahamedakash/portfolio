@@ -91,7 +91,7 @@ const itemVariants = {
 export default function ProblemSolver() {
   return (
     <section className="px-10 py-20 bg-[var(--color-bg-primary)]">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         {/* Section Header */}
         <motion.div
           className="mb-12"
@@ -111,16 +111,15 @@ export default function ProblemSolver() {
             className="font-display text-5xl md:text-6xl mb-6"
           >
             I Don&apos;t Just Build.
-            <br />
-            I Solve.
+            <br />I Solve.
           </motion.h2>
           <motion.p
             variants={itemVariants}
             className="font-sans font-light max-w-2xl text-[var(--color-text-secondary)] leading-relaxed"
           >
-            Most developers build. Fewer can reason under constraints. Competitive
-            programming is how I stay sharp — and it makes every product I ship
-            more thoughtful.
+            Most developers build. Fewer can reason under constraints.
+            Competitive programming is how I stay sharp — and it makes every
+            product I ship more thoughtful.
           </motion.p>
         </motion.div>
 
@@ -183,7 +182,9 @@ export default function ProblemSolver() {
                 ))}
               </div>
               <div className="flex items-center justify-end gap-2">
-                <span className="font-mono text-xs text-[var(--color-text-tertiary)]">Less</span>
+                <span className="font-mono text-xs text-[var(--color-text-tertiary)]">
+                  Less
+                </span>
                 <div className="flex gap-1">
                   {[0, 1, 2, 3, 4].map((level) => (
                     <div
@@ -193,7 +194,9 @@ export default function ProblemSolver() {
                     />
                   ))}
                 </div>
-                <span className="font-mono text-xs text-[var(--color-text-tertiary)]">More</span>
+                <span className="font-mono text-xs text-[var(--color-text-tertiary)]">
+                  More
+                </span>
               </div>
             </div>
           </motion.div>

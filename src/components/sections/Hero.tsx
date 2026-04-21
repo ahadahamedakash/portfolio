@@ -60,14 +60,13 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[75dvh] overflow-hidden" style={{ paddingTop: "96px", paddingBottom: "96px" }}>
+    <section className="relative min-h-[70dvh] overflow-hidden px-10 py-20">
       <GridBackground />
 
       {/* Container - same max-width as other sections */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10">
         {/* Two Column Row */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 lg:items-start">
-
           {/* LEFT COLUMN - 52% */}
           <div className="lg:w-[52%] flex flex-col">
             {/* Name */}
@@ -77,7 +76,10 @@ export default function Hero() {
             >
               Ahad
               <br />
-              <span className="italic text-[var(--color-gold)]">Ahamed</span> Akash
+              <span className="italic text-[var(--color-gold)]">
+                Ahamed
+              </span>{" "}
+              Akash
             </h1>
 
             {/* Thin Gold Rule */}
@@ -99,10 +101,10 @@ export default function Hero() {
               className="font-sans font-light leading-relaxed text-[var(--color-text-secondary)] mb-6"
               style={{ fontSize: "16px", lineHeight: "1.8", maxWidth: "460px" }}
             >
-              From medical student to full-stack engineer — I build real products
-              and sharpen my problem-solving through competitive programming. 1.5+
-              years shipping at scale, 10+ projects delivered, 160+ algorithmic
-              problems solved.
+              From medical student to full-stack engineer — I build real
+              products and sharpen my problem-solving through competitive
+              programming. 1.5+ years shipping at scale, 10+ projects delivered,
+              160+ algorithmic problems solved.
             </p>
 
             {/* CTAs */}
@@ -169,7 +171,8 @@ export default function Hero() {
                 <div
                   className="absolute inset-0 pointer-events-none rounded-xl"
                   style={{
-                    background: "repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0px, transparent 2px, transparent 4px)",
+                    background:
+                      "repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0px, transparent 2px, transparent 4px)",
                   }}
                 />
 
@@ -184,7 +187,10 @@ export default function Hero() {
                 </div>
 
                 {/* Terminal Content */}
-                <div className="font-mono relative z-10" style={{ fontSize: "13px" }}>
+                <div
+                  className="font-mono relative z-10"
+                  style={{ fontSize: "13px" }}
+                >
                   <motion.div
                     initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -280,11 +286,17 @@ export default function Hero() {
               </div>
             </motion.div>
           </div>
-
         </div>
 
         {/* STATS STRIP - Full Width Below Columns */}
-        <div style={{ marginTop: "40px", paddingTop: "32px", paddingBottom: "40px", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+        <div
+          style={{
+            // marginTop: "40px",
+            paddingTop: "40px",
+            paddingBottom: "40px",
+            // borderTop: "1px solid rgba(255,255,255,0.08)",
+          }}
+        >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             <div className="flex flex-col">
               <span
@@ -293,7 +305,10 @@ export default function Hero() {
               >
                 10+
               </span>
-              <span className="font-mono uppercase tracking-wider text-[var(--color-text-tertiary)]" style={{ fontSize: "11px" }}>
+              <span
+                className="font-mono uppercase tracking-wider text-[var(--color-text-tertiary)]"
+                style={{ fontSize: "11px" }}
+              >
                 Projects shipped
               </span>
             </div>
@@ -304,7 +319,10 @@ export default function Hero() {
               >
                 160+
               </span>
-              <span className="font-mono uppercase tracking-wider text-[var(--color-text-tertiary)]" style={{ fontSize: "11px" }}>
+              <span
+                className="font-mono uppercase tracking-wider text-[var(--color-text-tertiary)]"
+                style={{ fontSize: "11px" }}
+              >
                 Problems solved
               </span>
             </div>
@@ -315,7 +333,10 @@ export default function Hero() {
               >
                 1.5yr
               </span>
-              <span className="font-mono uppercase tracking-wider text-[var(--color-text-tertiary)]" style={{ fontSize: "11px" }}>
+              <span
+                className="font-mono uppercase tracking-wider text-[var(--color-text-tertiary)]"
+                style={{ fontSize: "11px" }}
+              >
                 Industry xp
               </span>
             </div>
@@ -326,15 +347,16 @@ export default function Hero() {
               >
                 40%
               </span>
-              <span className="font-mono uppercase tracking-wider text-[var(--color-text-tertiary)]" style={{ fontSize: "11px" }}>
+              <span
+                className="font-mono uppercase tracking-wider text-[var(--color-text-tertiary)]"
+                style={{ fontSize: "11px" }}
+              >
                 Dev time saved
               </span>
             </div>
           </div>
         </div>
-
       </div>
-
     </section>
   );
 }

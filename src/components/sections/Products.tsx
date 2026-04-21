@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import ProjectShowcase from "@/components/ui/ProjectShowcase";
+import ProjectCard from "@/components/ui/ProjectCard";
 import Link from "next/link";
 import { projects } from "@/lib/data";
 import { ExternalLink } from "lucide-react";
@@ -69,7 +69,7 @@ export default function Products() {
         >
           {featuredProjects.map((project, index) => (
             <motion.div key={project.slug} variants={itemVariants}>
-              <ProjectShowcase
+              <ProjectCard
                 slug={project.slug}
                 title={project.title}
                 description={project.fullDescription}
@@ -80,6 +80,7 @@ export default function Products() {
                 githubUrl={project.githubUrl}
                 githubBackendUrl={project.githubBackend}
                 index={index}
+                priority={index < 2}
               />
             </motion.div>
           ))}

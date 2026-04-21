@@ -3,19 +3,19 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTheme } from "next-themes";
-import { Menu, X, Sun, Moon } from "lucide-react";
+// import { useTheme } from "next-themes";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  // const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
+  // const { theme, setTheme } = useTheme();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setMounted(true);
+  // }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +29,7 @@ export default function Navbar() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/projects", label: "Projects" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#contact", label: "Contact" },
   ];
 
   const isActive = (href: string) => {
@@ -72,7 +72,7 @@ export default function Navbar() {
           {/* Right Side */}
           <div className="hidden md:flex items-center gap-4">
             {/* Theme Toggle */}
-            {mounted && (
+            {/* {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 className="p-2 text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)] transition-colors"
@@ -80,7 +80,7 @@ export default function Navbar() {
               >
                 {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
               </button>
-            )}
+            )} */}
 
             <div className="relative">
               <div className="w-1.5 h-1.5 bg-[var(--color-sage)] rounded-full animate-pulse" />
@@ -119,7 +119,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <div className="flex items-center gap-3 pt-2">
-                {mounted && (
+                {/* {mounted && (
                   <button
                     onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                     className="p-2 text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)] transition-colors"
@@ -127,7 +127,7 @@ export default function Navbar() {
                   >
                     {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
                   </button>
-                )}
+                )} */}
                 <div className="w-1.5 h-1.5 bg-[var(--color-sage)] rounded-full animate-pulse" />
                 <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-text-tertiary)]">
                   open to work
