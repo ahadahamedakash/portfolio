@@ -1,0 +1,15 @@
+# https://www.robotstxt.org/robotstxt.html
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas (if any)
+# User-agent: *
+# Disallow: /admin
+# Disallow: /api
+
+# Sitemap location
+Sitemap: https://ahadahamedakash.com/sitemap.xml
+
+# Crawl-delay (optional, polite to servers)
+# Crawl-delay: 1

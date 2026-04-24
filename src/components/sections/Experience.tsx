@@ -87,7 +87,7 @@ export default function Experience() {
         </motion.div>
       </div>
 
-      <div className="max-w-4xl mx-auto pb-16 md:pb-24">
+      <div className="max-w-4xl mx-auto px-6 md:px-10 pb-16 md:pb-24">
         {/* Timeline */}
         <div className="relative">
           {/* Vertical Line */}

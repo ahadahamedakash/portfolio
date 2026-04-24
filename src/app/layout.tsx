@@ -10,6 +10,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import ScrollProgressBar from "@/components/ui/ScrollProgressBar";
 import BackToTop from "@/components/ui/BackToTop";
 import Preloader from "@/components/ui/Preloader";
+import { StructuredData } from "@/components/ui/StructuredData";
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-display",
@@ -139,6 +140,11 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="dns-prefetch" href="https://github.com" />
+
+        {/* Structured Data for SEO */}
+        <StructuredData type="Person" />
+        <StructuredData type="WebSite" />
+        <StructuredData type="WebPage" />
       </head>
       <body className="antialiased" suppressHydrationWarning>
         <ThemeProvider defaultTheme="dark" attribute="data-theme">
