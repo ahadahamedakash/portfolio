@@ -176,6 +176,9 @@ export default function ProjectCard({
   index = 0,
   priority = false,
 }: ProjectCardProps) {
+  // Deduplicate technologies array to avoid duplicate key warnings
+  const uniqueTechnologies = Array.from(new Set(technologies));
+
   // Responsive tech tag limits
   const maxTags = {
     small: 3,   // < 480px
@@ -186,7 +189,7 @@ export default function ProjectCard({
 
   // Calculate which tags to show (client-side only for accurate screen size)
   const getDisplayedTech = () => {
-    if (typeof window === "undefined") return technologies.slice(0, maxTags.desktop);
+    if (typeof window === "undefined") return uniqueTechnologies.slice(0, maxTags.desktop);
 
     const width = window.innerWidth;
     let limit = maxTags.desktop;
@@ -195,11 +198,11 @@ export default function ProjectCard({
     else if (width < 768) limit = maxTags.mobile;
     else if (width < 1024) limit = maxTags.tablet;
 
-    return technologies.slice(0, limit);
+    return uniqueTechnologies.slice(0, limit);
   };
 
   const displayedTech = getDisplayedTech();
-  const remainingCount = technologies.length - displayedTech.length;
+  const remainingCount = uniqueTechnologies.length - displayedTech.length;
   const projectNumber = (index + 1).toString().padStart(2, "0");
 
   return (

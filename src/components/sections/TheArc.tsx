@@ -51,8 +51,8 @@ const cardVariants = {
 
 export default function TheArc() {
   return (
-    <section className="px-10 py-20 bg-[var(--color-bg-secondary)]">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
+    <section className="bg-[var(--color-bg-secondary)]">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24">
         {/* Section Heading */}
         <div className="mb-16">
           <h2 className="font-display text-4xl md:text-5xl mb-3">The Arc</h2>

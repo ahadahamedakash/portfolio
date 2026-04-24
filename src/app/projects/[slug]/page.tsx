@@ -1,8 +1,9 @@
 "use client";
 
+import { ProjectDetail } from "@/components/sections/project-details";
+import ProjectLoader from "@/components/ui/ProjectLoader";
 import { projects } from "@/lib/data";
 import { usePathname } from "next/navigation";
-import { ProjectDetail } from "@/components/project-details";
 
 export default function Page() {
   const pathname = usePathname();
@@ -10,7 +11,7 @@ export default function Page() {
   const lastSegment = segments[segments.length - 1];
 
   const currentProject = projects.find(
-    (project) => project.slug === lastSegment
+    (project) => project.slug === lastSegment,
   );
 
   if (!currentProject) {
@@ -18,10 +19,13 @@ export default function Page() {
   }
 
   return (
-    <div className="container pt-10">
-      <div className="section-padding min-h-screen">
-        <ProjectDetail project={currentProject} />
+    <>
+      <ProjectLoader />
+      <div className="container pt-10 mx-auto">
+        <div className="section-padding min-h-screen">
+          <ProjectDetail project={currentProject} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

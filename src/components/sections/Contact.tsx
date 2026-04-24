@@ -112,7 +112,7 @@ export default function Contact() {
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
-  const handleContactItemClick = (item: typeof contactItems[0]) => {
+  const handleContactItemClick = (item: (typeof contactItems)[0]) => {
     if (item.action === "copy") {
       handleCopyEmail();
     }
@@ -122,16 +122,10 @@ export default function Contact() {
     <section
       id="contact"
       className="relative bg-[var(--color-bg-primary)] overflow-hidden"
-      style={{
-        paddingTop: "96px",
-        paddingBottom: "96px",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
-      }}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24">
         {/* Two Column Layout */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-
           {/* LEFT COLUMN - 55% */}
           <motion.div
             className="lg:w-[55%] relative"
@@ -192,12 +186,16 @@ export default function Contact() {
                 marginBottom: "40px",
               }}
             >
-              I&apos;m open to full-time roles, freelance projects, and interesting collaborations.
-              If you have something worth building, reach out.
+              I&apos;m open to full-time roles, freelance projects, and
+              interesting collaborations. If you have something worth building,
+              reach out.
             </p>
 
             {/* Availability Strip */}
-            <div className="flex flex-wrap gap-4 mb-10" style={{ gap: "20px", marginBottom: "40px" }}>
+            <div
+              className="flex flex-wrap gap-4 mb-10"
+              style={{ gap: "20px", marginBottom: "40px" }}
+            >
               {/* Item 1 */}
               <div className="flex items-center gap-2" style={{ gap: "8px" }}>
                 <div
@@ -341,7 +339,10 @@ export default function Contact() {
                       variants={itemVariants}
                       className="group"
                       style={{
-                        borderBottom: index === contactItems.length - 1 ? "none" : "1px solid rgba(255,255,255,0.05)",
+                        borderBottom:
+                          index === contactItems.length - 1
+                            ? "none"
+                            : "1px solid rgba(255,255,255,0.05)",
                         padding: "16px 0",
                         cursor: isClickable ? "pointer" : "default",
                       }}
@@ -350,7 +351,11 @@ export default function Contact() {
                       <a
                         href={item.action === "link" ? item.href : undefined}
                         target={item.action === "link" ? "_blank" : undefined}
-                        rel={item.action === "link" ? "noopener noreferrer" : undefined}
+                        rel={
+                          item.action === "link"
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
                         className="block"
                         onClick={(e) => {
                           if (isEmail) {
@@ -375,10 +380,7 @@ export default function Contact() {
                             border: "0.5px solid rgba(255,255,255,0.08)",
                           }}
                         >
-                          <Icon
-                            size={16}
-                            style={{ color: "#B5A06A" }}
-                          />
+                          <Icon size={16} style={{ color: "#B5A06A" }} />
                         </div>
 
                         {/* Label + Value */}

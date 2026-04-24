@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import ProjectCard from "@/components/ui/ProjectCard";
+import ProjectShowcaseCard from "@/components/ui/ProjectShowcaseCard";
 import Link from "next/link";
 import { projects } from "@/lib/data";
 import { ExternalLink } from "lucide-react";
@@ -24,13 +24,13 @@ const itemVariants = {
   },
 };
 
-export default function Products() {
+export default function Projects() {
   // Filter only featured projects
   const featuredProjects = projects.filter((project) => project.featured);
 
   return (
-    <section id="products" className="bg-[var(--color-bg-secondary)]" style={{ paddingTop: "96px", paddingBottom: "96px" }}>
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
+    <section id="projects" className="bg-[var(--color-bg-secondary)]">
+      <div className="max-w-7xl mx-auto px-10 py-16 md:py-24">
         {/* Section Header */}
         <motion.div
           className="mb-16"
@@ -59,30 +59,26 @@ export default function Products() {
           </motion.p>
         </motion.div>
 
-        {/* Project Cards Grid - 2x2 for desktop/tablet, 1 column for mobile */}
+        {/* Project Cards - Vertical Column Layout */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="space-y-4"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
           {featuredProjects.map((project, index) => (
-            <motion.div key={project.slug} variants={itemVariants}>
-              <ProjectCard
-                slug={project.slug}
-                title={project.title}
-                description={project.fullDescription}
-                image={project.image}
-                technologies={project.technologies}
-                featured={project.featured}
-                liveUrl={project.liveUrl}
-                githubUrl={project.githubUrl}
-                githubBackendUrl={project.githubBackend}
-                index={index}
-                priority={index < 2}
-              />
-            </motion.div>
+            <ProjectShowcaseCard
+              key={project.slug}
+              index={index}
+              slug={project.slug}
+              title={project.title}
+              description={project.fullDescription}
+              technologies={project.technologies}
+              liveUrl={project.liveUrl}
+              githubUrl={project.githubUrl}
+              githubBackend={project.githubBackend}
+            />
           ))}
         </motion.div>
 

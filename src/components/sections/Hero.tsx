@@ -60,11 +60,11 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[70dvh] overflow-hidden px-10 py-20">
+    <section className="relative min-h-[70dvh] overflow-hidden px-6 md:px-10 py-16 md:py-24">
       <GridBackground />
 
       {/* Container - same max-width as other sections */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10">
+      <div className="relative z-10 max-w-7xl mx-auto px-10">
         {/* Two Column Row */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 lg:items-start">
           {/* LEFT COLUMN - 52% */}

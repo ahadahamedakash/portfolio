@@ -42,8 +42,8 @@ export default function MyApproach() {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
   return (
-    <section className="px-10 py-20">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
+    <section>
+      <div className="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24">
         {/* PART 1 - MANIFESTO */}
         <motion.div
           className="mb-14"

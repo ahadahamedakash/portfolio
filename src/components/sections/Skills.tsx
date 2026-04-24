@@ -91,8 +91,8 @@ const accentColors = {
 
 export default function Skills() {
   return (
-    <section className="px-10 py-20 bg-[var(--color-bg-primary)]">
-      <div className="max-w-7xl mx-auto  px-6 md:px-10">
+    <section className="bg-[var(--color-bg-primary)]">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24">
         {/* Section Header */}
         <motion.div
           className="mb-12"

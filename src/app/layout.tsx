@@ -8,6 +8,8 @@ import Footer from "@/components/layout/Footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import ScrollProgressBar from "@/components/ui/ScrollProgressBar";
+import BackToTop from "@/components/ui/BackToTop";
+import Preloader from "@/components/ui/Preloader";
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-display",
@@ -140,10 +142,12 @@ export default function RootLayout({
       </head>
       <body className="antialiased" suppressHydrationWarning>
         <ThemeProvider defaultTheme="dark" attribute="data-theme">
+          <Preloader />
           <ScrollProgressBar />
           <Navbar />
           {children}
           <Footer />
+          <BackToTop />
           <Analytics />
           <SpeedInsights />
         </ThemeProvider>

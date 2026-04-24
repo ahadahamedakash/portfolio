@@ -70,8 +70,8 @@ const itemVariants = {
 
 export default function Experience() {
   return (
-    <section className="bg-[var(--color-bg-secondary)] px-10 py-20">
-      <div className="max-w-7xl mx-auto  px-6 md:px-10">
+    <section className="bg-[var(--color-bg-secondary)]">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 pt-16 md:pt-24">
         {/* Section Header */}
         <motion.div
           className="mb-16"
@@ -87,7 +87,7 @@ export default function Experience() {
         </motion.div>
       </div>
 
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto pb-16 md:pb-24">
         {/* Timeline */}
         <div className="relative">
           {/* Vertical Line */}
@@ -95,7 +95,7 @@ export default function Experience() {
             className="hidden md:block absolute left-6 top-0 bottom-0 w-px"
             style={{
               backgroundColor: "rgba(181, 160, 106, 0.2)",
-              transformOrigin: "top"
+              transformOrigin: "top",
             }}
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
