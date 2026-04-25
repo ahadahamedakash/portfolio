@@ -9,7 +9,6 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import ScrollProgressBar from "@/components/ui/ScrollProgressBar";
 import BackToTop from "@/components/ui/BackToTop";
-import Preloader from "@/components/ui/Preloader";
 import { StructuredData } from "@/components/ui/StructuredData";
 
 const playfairDisplay = Playfair_Display({
@@ -95,11 +94,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: "cover",
-  colorScheme: "dark light",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f2ede4" },
-    { media: "(prefers-color-scheme: dark)", color: "#111110" },
-  ],
+  colorScheme: "dark",
+  themeColor: "#111110",
 };
 
 export default function RootLayout({
@@ -147,8 +143,7 @@ export default function RootLayout({
         <StructuredData type="WebPage" />
       </head>
       <body className="antialiased" suppressHydrationWarning>
-        <ThemeProvider defaultTheme="dark" attribute="data-theme">
-          <Preloader />
+        <ThemeProvider defaultTheme="dark" enableSystem={false} attribute="data-theme">
           <ScrollProgressBar />
           <Navbar />
           {children}
