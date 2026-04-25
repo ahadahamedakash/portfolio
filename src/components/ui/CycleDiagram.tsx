@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import { steps } from "@/lib/my-approach-data";
 
 interface CycleDiagramProps {
@@ -14,12 +13,12 @@ interface CycleDiagramProps {
  * Animated SVG showing the iterative development process
  * Displays 4 nodes in a circular pattern with hover interactions
  */
-export function CycleDiagram({ hoveredNode, setHoveredNode }: CycleDiagramProps) {
+export function CycleDiagram({
+  hoveredNode,
+  setHoveredNode,
+}: CycleDiagramProps) {
   return (
-    <div
-      className="relative"
-      style={{ maxWidth: "480px", width: "100%" }}
-    >
+    <div className="relative" style={{ maxWidth: "480px", width: "100%" }}>
       <svg
         viewBox="0 0 440 440"
         className="w-full h-auto"
