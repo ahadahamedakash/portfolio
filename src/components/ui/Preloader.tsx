@@ -1,73 +1,112 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
+interface PreloaderContextType {
+  isLoading: boolean;
+}
+
+const PreloaderContext = createContext<PreloaderContextType>({
+  isLoading: true,
+});
+
+export const usePreloader = () => useContext(PreloaderContext);
+
+interface PreloaderProviderProps {
+  children: ReactNode;
+}
+
 /**
- * Preloader Component - First-impression branding experience
+ * PreloaderProvider - Manages first-impression preloader state
  *
  * Engineering decisions:
- * 1. Uses localStorage (not sessionStorage) - shows only ONCE ever, not per session
- * 2. Checks font loading - waits for fonts to be ready before revealing content
- * 3. Minimum display time of 1.5s for brand recognition, maximum of 2.5s
- * 4. Graceful degradation if localStorage fails
- * 5. Progressively reveals content, doesn't block rendering
+ * 1. Uses sessionStorage (not localStorage) - shows once per browser session
+ * 2. Blocks content rendering until preloader completes (no flash)
+ * 3. Waits for fonts + minimum display time for brand recognition
+ * 4. Graceful degradation if sessionStorage fails
  */
-export default function Preloader() {
-  const [isVisible, setIsVisible] = useState(false);
+export function PreloaderProvider({ children }: PreloaderProviderProps) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [showPreloader, setShowPreloader] = useState(false);
 
   useEffect(() => {
-    // Check if user has ever seen the preloader before
+    // Check if user has seen preloader in this session
     const hasSeenPreloader = (() => {
       try {
-        return localStorage.getItem("has-seen-preloader") === "true";
+        return sessionStorage.getItem("has-seen-preloader") === "true";
       } catch {
         // Fallback for private browsing mode
         return false;
       }
     })();
 
-    // If already seen, skip preloader entirely
+    // Set initial state - preloading is active
+    document.body.setAttribute("data-preloading", "true");
+
     if (hasSeenPreloader) {
+      // Skip preloader, show content immediately
+      document.body.setAttribute("data-preloading", "false");
+      setIsLoading(false);
+      setShowPreloader(false);
       return;
     }
 
-    // Show preloader
-    setIsVisible(true);
+    // Show preloader for new session visitors
+    setShowPreloader(true);
 
     // Wait for document fonts to be ready
-    const fontsReady = () => {
-      return document.fonts.ready;
-    };
+    const fontsReady = document.fonts.ready;
 
-    // Minimum display time for brand recognition (1.5s)
-    // Maximum wait time (2.5s) to prevent blocking too long
+    // Minimum 1.8s for brand recognition, maximum 3s wait
     Promise.race([
-      fontsReady(),
-      new Promise((resolve) => setTimeout(resolve, 2500)),
+      fontsReady,
+      new Promise((resolve) => setTimeout(resolve, 3000)),
     ]).then(() => {
-      // Ensure minimum display time of 1.5s for smooth animation
+      // Ensure minimum display time for smooth animation
       setTimeout(() => {
-        setIsVisible(false);
+        setShowPreloader(false);
 
-        // Mark as seen - user will never see preloader again
-        try {
-          localStorage.setItem("has-seen-preloader", "true");
-        } catch {
-          // Silently fail in private browsing mode
-        }
-      }, 1500);
+        // Small delay for exit animation before showing content
+        setTimeout(() => {
+          document.body.setAttribute("data-preloading", "false");
+          setIsLoading(false);
+
+          // Mark as seen for this session
+          try {
+            sessionStorage.setItem("has-seen-preloader", "true");
+          } catch {
+            // Silently fail in private browsing
+          }
+        }, 600);
+      }, 1800);
     });
   }, []);
 
   return (
+    <PreloaderContext.Provider value={{ isLoading }}>
+      <PreloaderAnimation isVisible={showPreloader} />
+      <div data-main-content>
+        {children}
+      </div>
+    </PreloaderContext.Provider>
+  );
+}
+
+/**
+ * PreloaderAnimation - The visual preloader component
+ * Separated for better code organization
+ */
+function PreloaderAnimation({ isVisible }: { isVisible: boolean }) {
+  return (
     <AnimatePresence mode="wait">
       {isVisible && (
         <motion.div
+          data-preloader
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="fixed inset-0 z-[100] flex items-center justify-center"
+          className="fixed inset-0 z-[9999] flex items-center justify-center"
           style={{ backgroundColor: "var(--color-bg-primary)" }}
         >
           <div className="relative">
@@ -231,4 +270,9 @@ export default function Preloader() {
       )}
     </AnimatePresence>
   );
+}
+
+// Default export for backward compatibility
+export default function Preloader() {
+  return null; // This is now handled by PreloaderProvider
 }

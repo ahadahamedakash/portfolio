@@ -9,7 +9,6 @@ import { Menu, X, Home, Briefcase, MessageCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
-import { ThemeToggle } from "../theme/theme-toggle";
 import { useScroll } from "@/hooks/use-scroll";
 import { SCROLL_THRESHOLD } from "@/lib/constants";
 
@@ -129,12 +128,10 @@ export function Navbar() {
                 </Link>
               );
             })}
-            <ThemeToggle />
           </nav>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle />
 
             <Button
               variant="ghost"
