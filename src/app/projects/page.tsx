@@ -1,30 +1,71 @@
-import { Metadata } from "next";
+"use client";
 
+import { useState, useMemo } from "react";
+import {
+  ProjectsHero,
+  ProjectsFilter,
+  ProjectsGrid,
+} from "@/components/projects";
 import { projects } from "@/lib/data";
-import ProjectCard from "@/components/project-card";
-import { SectionHeading } from "@/components/section-heading";
-
-export const metadata: Metadata = {
-  title: "Ahad - Projects",
-  description:
-    "Browse my portfolio of web development projects including frontend designs.",
-};
+import type { ProjectFilter } from "@/components/projects";
+import MyApproachCard from "@/components/sections/MyApproachCard";
 
 export default function ProjectsPage() {
-  return (
-    <div className="container pt-10">
-      <div className="section-padding">
-        <SectionHeading
-          title="All Projects"
-          subtitle="A comprehensive collection of my web development projects"
-        />
+  const [activeFilter, setActiveFilter] = useState<ProjectFilter>("All");
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {projects.map((project, index) => (
-            <ProjectCard key={index + 1} project={project} index={index} />
-          ))}
-        </div>
-      </div>
+  const filteredProjects = useMemo(() => {
+    return projects.filter((project) => {
+      switch (activeFilter) {
+        case "All":
+          return true;
+        case "Featured":
+          return project.featured;
+        case "React":
+          return project.technologies.some((tech) =>
+            tech.toLowerCase().includes("react"),
+          );
+        case "Next.js":
+          return project.technologies.some((tech) =>
+            tech.toLowerCase().includes("next"),
+          );
+        case "Full-Stack":
+          return project.technologies.some(
+            (tech) =>
+              tech.toLowerCase().includes("node") ||
+              tech.toLowerCase().includes("express") ||
+              tech.toLowerCase().includes("mongodb"),
+          );
+        case "AI":
+          return (
+            project.technologies.some(
+              (tech) =>
+                tech.toLowerCase().includes("open ai") ||
+                tech.toLowerCase().includes("ai"),
+            ) ||
+            project.title.toLowerCase().includes("ai") ||
+            project.title.toLowerCase().includes("assistant")
+          );
+        default:
+          return true;
+      }
+    });
+  }, [activeFilter]);
+
+  return (
+    <div className="min-h-screen bg-[var(--color-bg-primary)]">
+      {/* Hero Section with Stats */}
+      <ProjectsHero projectCount={projects.length} />
+
+      {/* Filter and Grid Section */}
+      <section className="relative z-10 max-w-7xl mx-auto">
+        <ProjectsFilter
+          activeFilter={activeFilter}
+          onFilterChange={setActiveFilter}
+        />
+        <ProjectsGrid projects={filteredProjects} filterLabel={activeFilter} />
+      </section>
+
+      <MyApproachCard />
     </div>
   );
 }

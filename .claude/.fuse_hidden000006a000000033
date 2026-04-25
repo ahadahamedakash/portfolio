@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm audit:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npx next:*)",
+      "Bash(npx eslint:*)",
+      "Bash(npm list:*)",
+      "Bash(node:*)",
+      "Bash(npx tsc:*)",
+      "Bash(kill 43210 *)",
+      "Bash(kill 46553 *)",
+      "Bash(kill 47441 *)",
+      "Bash(kill 48523 *)",
+      "Bash(kill 49124 *)",
+      "Bash(awk '{print $2}')",
+      "Bash(xargs kill *)",
+      "Bash(kill 54005)",
+      "Bash(curl -s http://localhost:3001)",
+      "Bash(netstat -tlnp)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(pkill -9 -f \"next dev\")",
+      "Bash(kill 91752)",
+      "Bash(curl -s http://localhost:3000)"
+    ]
+  }
+}
