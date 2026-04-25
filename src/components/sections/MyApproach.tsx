@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "motion/react";
 import { CycleDiagram } from "@/components/ui/CycleDiagram";
 import { ManifestoSection } from "@/components/ui/ManifestoSection";
 import { StepCards } from "@/components/ui/StepCards";

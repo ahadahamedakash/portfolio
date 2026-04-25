@@ -1,7 +1,6 @@
 "use client";
 
 import { ContactContent } from "@/components/ui/ContactContent";
-import { AvailabilityBadges } from "@/components/ui/AvailabilityBadges";
 import { ContactCard } from "@/components/ui/ContactCard";
 
 /**
